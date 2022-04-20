@@ -1,4 +1,4 @@
-# console-tetris
+# Console Tetris
 A console tetris, KPI course work 2021-2022
 
 Created by KPI TV-12 students:
