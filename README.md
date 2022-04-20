@@ -5,4 +5,4 @@ Created by KPI TV-12 students:
 - Kuruch Ivan @JPlay42
 - Neresnytsya Oleh: @clientforgit
 - Pylypchuk Mykola (n/a)
-- Kostyanov Pavlo (n/a)
+- Kostyanov Pavlo @Sw1ft0
