@@ -4,10 +4,11 @@
 class Shape {
 	int statesNumber;
 	ShapeState* states;
-	int currentState;
+	int currentStateNumber;
 
 public:
-	Shape(int in_statesNumber, ShapeState* in_states, int in_currentState);
 	Shape(int in_statesNumber, ShapeState* in_states);
+	Shape(int in_statesNumber, ShapeState* in_states, int in_currentState);
+	ShapeState getCurrentState();
 	void rotate();
 };
