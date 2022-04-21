@@ -6,3 +6,6 @@ Created by KPI TV-12 students:
 - Neresnytsya Oleh: @clientforgit
 - Pylypchuk Mykola @Nick4uogl
 - Kostyanov Pavlo @Sw1ft0
+
+Commit rules:
+One of assigned coders unassigns all other ones, sets label `in progress` and works on issue. After commit, he removes the label.
