@@ -1,7 +1,10 @@
 #pragma once
+#ifndef _SHAPETEST_H_
+#define _SHAPETEST_H_
 #include "../src/ShapeState.h"
 
-class ShapeTest{
+class ShapeTest
+{
 	ShapeState testShapeStates[4];
 
 public:
@@ -11,3 +14,5 @@ public:
 	void testRotate();
 	void testAll();
 };
+
+#endif
