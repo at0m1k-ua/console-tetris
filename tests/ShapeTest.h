@@ -1,18 +1,12 @@
-#pragma once
-#ifndef _SHAPETEST_H_
-#define _SHAPETEST_H_
-#include "../src/ShapeState.h"
+#include "../src/Shape.h"
 
-class ShapeTest
-{
-	ShapeState testShapeStates[4];
+class ShapeTest {
+	ShapeState* testShapeState;
 
 public:
-	ShapeTest();
+	ShapeTest() {
 
-	void testGetCurrentState();
-	void testRotate();
+	}
+
 	void testAll();
 };
-
-#endif

@@ -1,21 +1,22 @@
 #include "Shape.h"
 
-Shape::Shape(int in_statesNumber, ShapeState* in_states, int in_currentStateNumber) {
-	statesNumber = in_statesNumber;
-	states = in_states;
-	currentStateNumber = in_currentStateNumber;
+Shape::Shape(ShapeState* shapeStateList, int in_color) {
+	currentState = shapeStateList;
+	color = in_color;
 }
-
-Shape::Shape(int in_statesNumber, ShapeState* in_states) : Shape::Shape(in_statesNumber, in_states, 0) {}
 
 void Shape::rotate() {
-	if (currentStateNumber == statesNumber - 1) {
-		currentStateNumber = 0;
-	} else {
-		currentStateNumber++;
-	}
+	currentState = currentState->getNext();
 }
 
-ShapeState Shape::getCurrentState() {
-	return states[currentStateNumber];
+ShapeState* Shape::getCurrentState() {
+	return currentState;
+}
+
+void Shape::setColor(int in_color) {
+	color = in_color;
+}
+
+int Shape::getColor() {
+	return color;
 }
