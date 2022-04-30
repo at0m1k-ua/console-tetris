@@ -5,15 +5,15 @@
 
 class Shape
 {
-	int statesNumber;
-	ShapeState *states;
-	int currentStateNumber;
+	ShapeState* currentState;
+	int color;
 
 public:
-	Shape(int in_statesNumber, ShapeState *in_states);
-	Shape(int in_statesNumber, ShapeState *in_states, int in_currentState);
-	ShapeState getCurrentState();
+	Shape(ShapeState* shapeStateList, int in_color);
 	void rotate();
+	ShapeState* getCurrentState();
+	void setColor(int in_color);
+	int getColor();
 };
 
 #endif
