@@ -8,4 +8,6 @@ Created by KPI TV-12 students:
 - Kostyanov Pavlo @Sw1ft0
 
 Commit rules:
-One of assigned coders unassigns all other ones, sets label `in progress` and works on issue. After commit, he removes the label.
+- One of assigned coders unassigns all other ones, sets label `in progress` and works on issue. After commit, he removes the label.
+- If you work on issue, tag it in your commit: `Add a class #12345`
+
