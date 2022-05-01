@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _SHAPELOADER_H
-#define _SHAPELOADER_H
+#ifndef _SHAPELOADER_H_
+#define _SHAPELOADER_H_
 #include "Shape.h"
 #include <vector>
 #include <string>
@@ -15,7 +15,7 @@ class ShapeLoader {
  public:
   ShapeLoader();
   Shape* getShape(int number);
-  int getAmonunt();
+  int getAmount();
 };
 
 
