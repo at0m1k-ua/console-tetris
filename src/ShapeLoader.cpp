@@ -11,7 +11,7 @@ std::vector<std::string> ShapeLoader::getFileString() {
   fileInput.open("shapes.conf");
   if (!fileInput.is_open())
     {
-      std::cout<<"Failed to open file \"shapes.conf\"";
+      std::cout<<"Failed to open file \"shapes.conf\""<<std::endl;
       exit(1);
     }
   else
