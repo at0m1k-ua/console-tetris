@@ -16,6 +16,8 @@ public:
 	void init();	
 	void updateScreen();
 	void updateFrame();
+	void paint(int x, int y, int color);
+	void fillCell(int x, int y);
 };
 
 #endif
