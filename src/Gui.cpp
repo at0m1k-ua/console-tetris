@@ -54,3 +54,20 @@ void Gui::updateFrame() {
     wrefresh(frame);
     move(0, 0);
 }
+
+void Gui::paint(int x, int y, int color) {
+	switch(color) {
+		case 0:
+		fillCell(x, y);
+		break;
+		default:
+		wattron(frame, COLOR_PAIR(color));
+		fillCell(x, y);
+		wattroff(frame, COLOR_PAIR(color));
+	}
+}
+
+void Gui::fillCell(int x, int y) {
+	mvwaddch(frame, y + 1, 2*x + 1, ' ');
+	mvwaddch(frame, y + 1, 2*x + 2, ' ');
+}
