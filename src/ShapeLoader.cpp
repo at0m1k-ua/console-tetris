@@ -8,14 +8,18 @@ std::vector<std::string> ShapeLoader::getFileString() {
   std::ifstream fileInput;
   std::string str;
   std::vector <std::string> lines;
-  fileInput.open("shapes.conf");
-  if (!fileInput.is_open())
-    {
-      std::cout<<"Failed to open file \"shapes.conf\""<<std::endl;
-      exit(1);
-    }
-  else
-      while(!fileInput.eof())
+  
+  fileInput.exceptions(std::ifstream::badbit | std::ifstream::failbit);
+  try
+  {
+    fileInput.open("shapes.conf");
+  }
+  catch(const std::ifstream::failure& ex)
+  {
+    std::cout << ex.what() << std::endl;
+  }
+  
+  while(!fileInput.eof())
 	{
 	  std::getline(fileInput, str);
 	  lines.push_back(str);
