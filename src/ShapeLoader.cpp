@@ -4,19 +4,15 @@ ShapeLoader::ShapeLoader()
 {
   getFileString();
   generateArrayNumStates();
-  this->shapes = new ShapeState[amountShapes];
-  this->shapes[0].setValue(0, 0, true);
-  std::cout<<this->shapes[0].getValue(0, 0)<< ' ';
-  std::cout<<this->shapes[0].getValue(0, 0)<< ' ';
-  //generateShapeStates();  <- stacksmashing after end of method's work
-  for(int i = 0; i < 16; i++)
-  {
-    if(i%4 == 0)
-      std::cout<<"\n";
-    std::cout<<this->shapes[1].getValue(i%4, (int) i/4)<< ' ';
-  }
-  std::cout<<"\n";
+  this->shapes = new ShapeState[amountShapes];  
+  generateShapeStates();
 }
+
+ShapeLoader::~ShapeLoader()
+{
+  delete[] shapes;
+}
+
 
 std::vector<std::string> ShapeLoader::getFileString()
 {
@@ -40,12 +36,6 @@ std::vector<std::string> ShapeLoader::getFileString()
   return lines;
 }
 
-
-ShapeLoader::~ShapeLoader()
-{
-  delete[] shapes;
-}
-
 void ShapeLoader::generateArrayNumStates()
 {
   int i = 0;
@@ -64,37 +54,32 @@ void ShapeLoader::generateArrayNumStates()
 void ShapeLoader::generateShapeStates()
 {
   bool shapeStateValue[16];
-  int i = 0;
+  int i = 0;      // number of line
   for(std::string str: this->fileLines)
   {
     if(str != "")
     {
       if(!std::isdigit(str[0]))
       {
-	stringConventor(str, shapeStateValue, (i%4)*4);   // (i%4)*4 = 0 4 8 12 16 0 4 8 12 16 ...
+	stringConvertor(str, shapeStateValue, (i%4)*4);   // (i%4)*4 = 0 4 8 12 16 0 4 8 12 16 ...
 	i++;
       }
       else
       {
-	if(i == 4)
-	  for(int j = 0; j < 16; j++)
-	    shapes[(int)(i-4)/4].setValue(j%4,(int) j/4, shapeStateValue[j]); // (i-4)/4 = 0 1 2 3 ... if i = 4 8 12 16 ...
+        for(int j = 0; j < 16; j++)
+          shapes[(int)(i-4)/4].setValue(j%4,(int) j/4, shapeStateValue[j]); // (i-4)/4 = 0 1 2 3 ... if i = 4 8 12 16 ...
       }
     }
     else if(str == "")
     {
-      stringConventor(str, shapeStateValue, (i%4)*4);
+      stringConvertor(str, shapeStateValue, (i%4)*4);
       i++;
     }
   }
 }
 
-void ShapeLoader::stringConventor(std::string str, bool *shapeStateValue, int startIndex)
+void ShapeLoader::stringConvertor(std::string str, bool *shapeStateValue, int startIndex)
 {
-  if(str == "")
-  {
-    std::cout<<"1"<<std::endl;
-  }
   for(int i = 0; i < (int) str.size(); i++)
   {
     if(!std::isspace(str[i]))

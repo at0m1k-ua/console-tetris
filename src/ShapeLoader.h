@@ -14,7 +14,7 @@ class ShapeLoader {
   std::vector<std::string>getFileString();
   void generateArrayNumStates();
   void generateArrayShapeStates();
-  void stringConventor(std::string str, bool* shapeStateValue, int startIndex);
+  void stringConvertor(std::string str, bool* shapeStateValue, int startIndex);
 public:
   ShapeLoader();
   ~ShapeLoader();
