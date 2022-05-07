@@ -1,12 +1,11 @@
 #include "ShapeState.h"
 
 ShapeState::ShapeState() {
-	bool initialValues[16] = {false};
-	values = initialValues;
+	values = new bool[16]{false};
 }
 
-ShapeState::ShapeState(bool* in_values) {
-	values = in_values;
+ShapeState::~ShapeState() {
+	delete[] values;
 }
 
 ShapeState* ShapeState::getNext() {

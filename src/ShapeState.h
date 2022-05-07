@@ -9,7 +9,7 @@ class ShapeState {
 
 public:
 	ShapeState();
-	ShapeState(bool* in_values);
+	~ShapeState();
 	ShapeState* getNext();
 	void setNext(ShapeState* in_next);
 	bool getValue(int x, int y);
