@@ -19,18 +19,22 @@ std::vector<std::string> ShapeLoader::getFileString()
   std::ifstream fileInput;
   std::string str;
   std::vector <std::string> lines;
-  fileInput.open("shapes.conf");
-  if (!fileInput.is_open())
-    {
-      std::cout<<"Failed to open file \"shapes.conf\""<<std::endl;
-      exit(1);
-    }
-  else
-    while(!fileInput.eof())
-      {
-	std::getline(fileInput, str);
-	lines.push_back(str);
-      }
+  
+  fileInput.exeption(std::ifstream::badbit | std::ifstream::failbit);
+  try
+  {
+    fileInput.open("shapes.conf");
+  }
+  catch(const std::ifstream::failure& ex)
+  {
+    std::cout << ex.what() << std::endl;
+  }
+  
+  while(!fileInput.eof())
+  {
+    std::getline(fileInput, str);
+    lines.push_back(str);
+  }
   fileInput.close();
   this->fileLines = lines;
   return lines;
@@ -54,7 +58,7 @@ void ShapeLoader::generateArrayNumStates()
 void ShapeLoader::generateShapeStates()
 {
   bool shapeStateValue[16];
-  int i = 0;      // number of line
+  int numberLine = 0;      // number of line
   for(std::string str: this->fileLines)
   {
     if(str != "")
@@ -62,25 +66,25 @@ void ShapeLoader::generateShapeStates()
       if(!std::isdigit(str[0]))
       {
 	stringConvertor(str, shapeStateValue, (i%4)*4);   // (i%4)*4 = 0 4 8 12 16 0 4 8 12 16 ...
-	i++;
+	numberLine++;
       }
       else
       {
         for(int j = 0; j < 16; j++)
-          shapes[(int)(i-4)/4].setValue(j%4,(int) j/4, shapeStateValue[j]); // (i-4)/4 = 0 1 2 3 ... if i = 4 8 12 16 ...
+          shapes[(numberLine-4)/4].setValue(j%4, j/4, shapeStateValue[j]); // (i-4)/4 = 0 1 2 3 ... if i = 4 8 12 16 ...
       }
     }
     else if(str == "")
     {
       stringConvertor(str, shapeStateValue, (i%4)*4);
-      i++;
+      numberLine++;
     }
   }
 }
 
 void ShapeLoader::stringConvertor(std::string str, bool *shapeStateValue, int startIndex)
 {
-  for(int i = 0; i < (int) str.size(); i++)
+  for(int i = 0; i < str.size(); i++)
   {
     if(!std::isspace(str[i]))
       shapeStateValue[i+startIndex] = true;
