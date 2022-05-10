@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iostream>
 class ShapeLoader {
+public:
   ShapeState* shapes;
   std::vector <int> numStates;
   std::vector <std::string> fileLines;
@@ -14,8 +15,8 @@ class ShapeLoader {
   std::vector<std::string>getFileString();
   void generateArrayNumStates();
   void generateArrayShapeStates();
-  void stringConvertor(std::string str, bool* shapeStateValue, int startIndex);
-public:
+  void parseToShapeState(std::string line, ShapeState &state, int y);
+//public:
   ShapeLoader();
   ~ShapeLoader();
   void generateShapeStates();

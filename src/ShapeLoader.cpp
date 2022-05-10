@@ -1,5 +1,7 @@
 #include "ShapeLoader.h"
 
+using namespace std;
+
 ShapeLoader::ShapeLoader()
 {
   getFileString();
@@ -19,22 +21,18 @@ std::vector<std::string> ShapeLoader::getFileString()
   std::ifstream fileInput;
   std::string str;
   std::vector <std::string> lines;
-  
-  fileInput.exeption(std::ifstream::badbit | std::ifstream::failbit);
-  try
-  {
-    fileInput.open("shapes.conf");
-  }
-  catch(const std::ifstream::failure& ex)
-  {
-    std::cout << ex.what() << std::endl;
-  }
-  
-  while(!fileInput.eof())
-  {
-    std::getline(fileInput, str);
-    lines.push_back(str);
-  }
+  fileInput.open("shapes.conf");
+  if (!fileInput.is_open())
+    {
+      std::cout<<"Failed to open file \"shapes.conf\""<<std::endl;
+      exit(1);
+    }
+  else
+    while(!fileInput.eof())
+      {
+	std::getline(fileInput, str);
+	lines.push_back(str);
+      }
   fileInput.close();
   this->fileLines = lines;
   return lines;
@@ -57,42 +55,19 @@ void ShapeLoader::generateArrayNumStates()
 
 void ShapeLoader::generateShapeStates()
 {
-  bool shapeStateValue[16];
-  int numberLine = 0;      // number of line
+  int i = 0;      // number of line (except states quantities)
   for(std::string str: this->fileLines)
   {
-    if(str != "")
-    {
-      if(!std::isdigit(str[0]))
-      {
-	stringConvertor(str, shapeStateValue, (i%4)*4);   // (i%4)*4 = 0 4 8 12 16 0 4 8 12 16 ...
-	numberLine++;
-      }
-      else
-      {
-        for(int j = 0; j < 16; j++)
-          shapes[(numberLine-4)/4].setValue(j%4, j/4, shapeStateValue[j]); // (i-4)/4 = 0 1 2 3 ... if i = 4 8 12 16 ...
-      }
-    }
-    else if(str == "")
-    {
-      stringConvertor(str, shapeStateValue, (i%4)*4);
-      numberLine++;
+    if (str == "" || !isdigit(str[0])) {
+      cout << i/4 << i%4 << endl;
+      parseToShapeState(str, shapes[i/4], i%4);
+      i++;
     }
   }
 }
 
-void ShapeLoader::stringConvertor(std::string str, bool *shapeStateValue, int startIndex)
-{
-  for(int i = 0; i < str.size(); i++)
-  {
-    if(!std::isspace(str[i]))
-      shapeStateValue[i+startIndex] = true;
-    else
-      shapeStateValue[i+startIndex] = false;
-  }
-  for(int i = str.size(); i < 4; i++)
-  {
-    shapeStateValue[i+startIndex] = false;
+void ShapeLoader::parseToShapeState(string str, ShapeState &state, int y) {
+  for (int i = 0; i < (int) str.size(); i++) {
+    state.setValue(i, y, !isspace(str.at(i)));
   }
 }
