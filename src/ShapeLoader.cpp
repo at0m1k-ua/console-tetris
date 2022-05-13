@@ -4,7 +4,7 @@ ShapeLoader::ShapeLoader()
 {
   getFileString();
   generateArrayNumStates();  
-  std::vector <ShapeState> states = generateShapeStates();
+  generateShapeStates();
 }
 
 std::vector<std::string> ShapeLoader::getFileString()
