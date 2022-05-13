@@ -1,38 +1,33 @@
 #include "ShapeLoader.h"
 
-using namespace std;
-
 ShapeLoader::ShapeLoader()
 {
   getFileString();
-  generateArrayNumStates();
-  this->shapes = new ShapeState[amountShapes];  
-  generateShapeStates();
+  generateArrayNumStates();  
+  std::vector <ShapeState> states = generateShapeStates();
 }
-
-ShapeLoader::~ShapeLoader()
-{
-  delete[] shapes;
-}
-
 
 std::vector<std::string> ShapeLoader::getFileString()
 {
   std::ifstream fileInput;
   std::string str;
   std::vector <std::string> lines;
-  fileInput.open("shapes.conf");
-  if (!fileInput.is_open())
-    {
-      std::cout<<"Failed to open file \"shapes.conf\""<<std::endl;
-      exit(1);
-    }
-  else
-    while(!fileInput.eof())
-      {
-	std::getline(fileInput, str);
-	lines.push_back(str);
-      }
+  
+  fileInput.exceptions(std::ifstream::badbit | std::ifstream::failbit);
+  try
+  {
+    fileInput.open("shapes.conf");
+  }
+  catch(const std::ifstream::failure& ex)
+  {
+    std::cout << ex.what() << std::endl;
+  }
+  
+  while(!fileInput.eof())
+  {
+    std::getline(fileInput, str);
+    lines.push_back(str);
+  }
   fileInput.close();
   this->fileLines = lines;
   return lines;
@@ -53,21 +48,21 @@ void ShapeLoader::generateArrayNumStates()
 }
 
 
-void ShapeLoader::generateShapeStates()
+std::vector<ShapeState> ShapeLoader::generateShapeStates()
 {
-  int i = 0;      // number of line (except states quantities)
+  std::vector<ShapeState> states(amountShapes);
+  int i = 0;      // number of line (exept state quatities)
   for(std::string str: this->fileLines)
-  {
-    if (str == "" || !isdigit(str[0])) {
-      cout << i/4 << i%4 << endl;
-      parseToShapeState(str, shapes[i/4], i%4);
+    if(str == "" || !std::isdigit(str[0]))
+    {
+      parseToState(str, states[i/4], i%4);
       i++;
     }
-  }
+  return states;
 }
 
-void ShapeLoader::parseToShapeState(string str, ShapeState &state, int y) {
-  for (int i = 0; i < (int) str.size(); i++) {
-    state.setValue(i, y, !isspace(str.at(i)));
-  }
+void ShapeLoader::parseToState(std::string str, ShapeState &currentState, int y)
+{
+  for(int i = 0; i < (int) str.size(); i++)
+    currentState.setValue(i, y, !isspace(str.at(i)));
 }
