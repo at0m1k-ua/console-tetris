@@ -7,18 +7,23 @@
 #include <fstream>
 #include <iostream>
 class ShapeLoader {
-  ShapeState* shapes;
+  
+  std::vector <Shape> shapes;
   std::vector <int> numStates;
   std::vector <std::string> fileLines;
   int amountShapes;
+  
   std::vector<std::string>getFileString();
   void generateArrayNumStates();
-  void parseToState(std::string str, ShapeState &currentState, int y);
-public:
-  ShapeLoader();
   std::vector<ShapeState> generateShapeStates();
+  void parseToState(std::string str, ShapeState &currentState, int y);
+  
+public:
+  
+  ShapeLoader();
   Shape* getShape(int number);
   int getAmount();
+  
 };
 
 

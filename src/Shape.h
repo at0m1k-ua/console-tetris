@@ -9,6 +9,7 @@ class Shape
 	int color;
 
 public:
+        Shape();
 	Shape(ShapeState* shapeStateList, int in_color);
 	void rotate();
 	ShapeState* getCurrentState();
