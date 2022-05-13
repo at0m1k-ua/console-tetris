@@ -5,12 +5,23 @@ Shape::Shape() {
         color = 0;
 }
 
-Shape::Shape(ShapeState* firstShapeState, int in_color) {
+Shape::Shape(ShapeState* firstShapeState, int rotatesCount, int in_color) {
 	currentState = firstShapeState;
 	color = in_color;
+	createListOfRotatedStates(firstShapeState, rotatesCount);
 }
 
-void Shape::rotate() {
+void Shape::createListOfRotatedStates(ShapeState* firstShapeState, int rotatesCount) {
+	ShapeState* lastRotation = firstShapeState;
+	for (int i = 0; i < rotatesCount; i++) {
+		ShapeState* newRotatedState = rotateState(lastRotation);
+		lastRotation->setNext(newRotatedState);
+		lastRotation = newRotatedState;
+	}
+	lastRotation->setNext(firstShapeState);
+}
+
+void Shape::setNextState() {
 	currentState = currentState->getNext();
 }
 
@@ -28,20 +39,21 @@ int Shape::getColor() {
 
 ShapeState* Shape::rotateState(ShapeState* initialState) {
 	ShapeState* rotatedState = new ShapeState();
-	int newJ;
+	int newI;
 	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			switch (j) {
+		switch (i) {
 				case 0:
-					newJ = 2;
+					newI = 2;
 					break;
 				case 2:
-					newJ = 0;
+					newI = 0;
 					break;
 				default:
-					newJ = j;
+					newI = i;
 			}
-			rotatedState->setValue(i, newJ, initialState->getValue(j, i));
+		for (int j = 0; j < 4; j++) {
+			
+			rotatedState->setValue(newI, j, initialState->getValue(j, i));
 		}
 	}
 	return rotatedState;
