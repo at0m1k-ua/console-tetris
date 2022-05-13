@@ -1,7 +1,12 @@
 #include "Shape.h"
 
-Shape::Shape(ShapeState* shapeStateList, int in_color) {
-	currentState = shapeStateList;
+Shape::Shape() {
+        currentState = nullptr;
+        color = 0;
+}
+
+Shape::Shape(ShapeState* firstShapeState, int in_color) {
+	currentState = firstShapeState;
 	color = in_color;
 }
 
