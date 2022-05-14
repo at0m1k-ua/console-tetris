@@ -1,1 +1,1 @@
-g++ -Wall src/*.cpp -o src/ConsoleTetris.o -lncurses
+g++ -Wall src/*.cpp -o bin/console_tetris -lncurses
