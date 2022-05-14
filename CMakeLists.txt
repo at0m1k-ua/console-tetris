@@ -3,4 +3,7 @@ project(console_tetris)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(console_tetris src/Gui.cpp src/Main.cpp src/Shape.cpp src/ShapeLoader.cpp src/ShapeState.cpp)
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIR})
+add_executable(console_tetris src/Main.cpp src/Gui.cpp src/Shape.cpp src/ShapeLoader.cpp src/ShapeState.cpp)
+target_link_libraries(console_tetris ${CURSES_LIBRARIES})
