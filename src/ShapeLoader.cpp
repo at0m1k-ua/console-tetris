@@ -16,7 +16,7 @@ std::vector<std::string> ShapeLoader::getFileString()
   fileInput.exceptions(std::ifstream::badbit | std::ifstream::failbit);
   try
   {
-    fileInput.open("shapes.conf");
+    fileInput.open("../shapes.conf");
   }
   catch(const std::ifstream::failure& ex)
   {
