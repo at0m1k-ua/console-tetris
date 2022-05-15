@@ -32,3 +32,16 @@ void GameField::obj_fall()
 void GameField::obj_stop()
 {
 }
+int GameField::getSizeX()
+{
+    return gf_size_x;
+}
+
+int GameField::getSizeY()
+{
+    return gf_size_y;
+}
+int GameField::getFieldValue(int x, int y)
+{
+    return field[y][x];
+}

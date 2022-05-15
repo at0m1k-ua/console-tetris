@@ -14,6 +14,9 @@ public:
 	~GameField();
 	void obj_fall();
 	void obj_stop();
+    int getSizeX();
+    int getSizeY();
+    int getFieldValue(int x, int y);
 };
 
 #endif
