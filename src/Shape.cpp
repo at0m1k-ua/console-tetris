@@ -1,13 +1,7 @@
 #include "Shape.h"
 
-Shape::Shape() {
-        currentState = nullptr;
-        color = 0;
-}
-
-Shape::Shape(ShapeState* firstShapeState, int rotatesCount, int in_color) {
+Shape::Shape(ShapeState* firstShapeState, int rotatesCount) {
 	currentState = firstShapeState;
-	color = in_color;
 	createListOfRotatedStates(firstShapeState, rotatesCount);
 }
 
@@ -27,14 +21,6 @@ void Shape::setNextState() {
 
 ShapeState* Shape::getCurrentState() {
 	return currentState;
-}
-
-void Shape::setColor(int in_color) {
-	color = in_color;
-}
-
-int Shape::getColor() {
-	return color;
 }
 
 ShapeState* Shape::rotateState(ShapeState* initialState) {

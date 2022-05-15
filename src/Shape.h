@@ -6,17 +6,13 @@
 class Shape
 {
 	ShapeState* currentState;
-	int color;
 	ShapeState* rotateState(ShapeState* initialState);
 	void createListOfRotatedStates(ShapeState* firstShapeState, int rotatesCount);
 
 public:
-    Shape();
-	Shape(ShapeState* shapeStateList, int rotatesCount, int in_color);
+	Shape(ShapeState* shapeStateList, int rotatesCount);
 	void setNextState();
 	ShapeState* getCurrentState();
-	void setColor(int in_color);
-	int getColor();
 };
 
 #endif
