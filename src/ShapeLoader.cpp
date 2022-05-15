@@ -1,10 +1,11 @@
 #include "ShapeLoader.h"
 
-ShapeLoader::ShapeLoader()
-{
-  getFileString();
-  generateArrayNumStates();  
-  generateShapeStates();
+void ShapeLoader::load() {
+    getFileString();
+    generateArrayNumStates();
+    ShapeState* states = new ShapeState[amountShapes];
+    generateShapeStates(states);
+    generateShapes(states);
 }
 
 std::vector<std::string> ShapeLoader::getFileString()
@@ -48,9 +49,8 @@ void ShapeLoader::generateArrayNumStates()
 }
 
 
-std::vector<ShapeState> ShapeLoader::generateShapeStates()
+void ShapeLoader::generateShapeStates(ShapeState* states)
 {
-  std::vector<ShapeState> states(amountShapes);
   int i = 0;      // number of line (exept state quatities)
   for(std::string str: this->fileLines)
     if(str == "" || !std::isdigit(str[0]))
@@ -58,11 +58,29 @@ std::vector<ShapeState> ShapeLoader::generateShapeStates()
       parseToState(str, states[i/4], i%4);
       i++;
     }
-  return states;
 }
 
 void ShapeLoader::parseToState(std::string str, ShapeState &currentState, int y)
 {
   for(int i = 0; i < (int) str.size(); i++)
     currentState.setValue(i, y, !isspace(str.at(i)));
+}
+
+void ShapeLoader::generateShapes(ShapeState* states)
+{
+    shapes = new Shape*[amountShapes];
+    for(int i = 0; i < amountShapes; i++)
+    {
+        shapes[i] = new Shape(&states[i], numStates.at(i), 0);
+    }
+}
+
+Shape* ShapeLoader::getShape(int num)
+{
+    return shapes[num];
+}
+
+int ShapeLoader::getAmount()
+{
+    return this->amountShapes;
 }
