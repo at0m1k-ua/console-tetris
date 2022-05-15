@@ -4,15 +4,13 @@
 
 
 class GameField {
-	int Field[gf_size_x][gf_size_y]);
 
+	int** field;
 
 public:
 	GameField(int gf_size_x, int gf_size_y);
 	void obj_fall();
 	void obj_stop();
-	void obj_change();
-	void line_elimination();
 };
 
 #endif
