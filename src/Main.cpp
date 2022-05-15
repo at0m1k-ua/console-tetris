@@ -1,5 +1,6 @@
 #include "ShapeLoader.h"
 #include "Shape.h"
+#include "GameField.h"
 #include <iostream>
 
 using namespace std;
@@ -18,6 +19,15 @@ int main() {
           cout << "\n";
       }
       cout << endl;
+  }
+  auto* gameField = new GameField(10, 10);
+  for(int i = 0; i < 10; i++)
+  {
+      for (int j = 0; j < 10; j++)
+      {
+          std::cout << gameField->getFieldValue(j, i) << " ";
+      }
+      std::cout << std::endl;
   }
   return 0;
 }
