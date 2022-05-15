@@ -52,8 +52,8 @@ std::vector <int> ShapeLoader::getNumStates(std::vector <std::string> &fileLines
 void ShapeLoader::generateShapeStates(ShapeState* states, std::vector <std::string> &fileLines)
 {
   int i = 0;      // number of line (exept state quatities)
-  for(std::string str: this->fileLines)
-    if(str == "" || !std::isdigit(str[0]))
+  for(std::string str: fileLines)
+    if(str.empty() || !std::isdigit(str[0]))
     {
       parseToState(str, states[i/4], i%4);
       i++;
@@ -66,7 +66,7 @@ void ShapeLoader::parseToState(std::string str, ShapeState &currentState, int y)
         currentState.setValue(i, y, !isspace(str.at(i)));
 }
 
-void ShapeLoader::generateShapes(ShapeState* states)
+void ShapeLoader::generateShapes(ShapeState* states, std::vector <int> &numStates)
 {
     shapes = new Shape*[amountShapes];
     for (int i = 0; i < amountShapes; i++)
