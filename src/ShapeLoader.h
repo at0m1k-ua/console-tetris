@@ -11,7 +11,7 @@ class ShapeLoader {
   std::vector <Shape> shapes;
   std::vector <int> numStates;
   std::vector <std::string> fileLines;
-  int amountShapes;
+  int amountShapes = 0;
   
   std::vector<std::string>getFileString();
   void generateArrayNumStates();
