@@ -18,6 +18,14 @@ GameField::GameField(int gf_size_x, int gf_size_y)
     for (int i = 0; i < gf_size_y; i++)
         field[i] = new int[gf_size_x]{0};
 }
+
+GameField::~GameField()
+{
+    for (int i = 0; i < gf_size_y; i++)
+    {
+        delete[] field[i];
+    }
+}
 void GameField::obj_fall()
 {
 }
