@@ -68,10 +68,9 @@ void ShapeLoader::parseToState(std::string str, ShapeState &currentState, int y)
 
 void ShapeLoader::generateShapes(ShapeState* states)
 {
-    srand((unsigned int)time(nullptr));
     shapes = new Shape*[amountShapes];
     for (int i = 0; i < amountShapes; i++)
-        shapes[i] = new Shape(&states[i], numStates.at(i), abs(rand() % 6));
+        shapes[i] = new Shape(&states[i], numStates.at(i));
 }
 
 Shape* ShapeLoader::getShape(int num)
