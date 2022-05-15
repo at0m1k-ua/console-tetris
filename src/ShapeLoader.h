@@ -21,9 +21,9 @@ class ShapeLoader {
 
 public:
 
-  void load();
-  Shape* getShape(int number);
-  int getAmount() const;
+    void load();
+    Shape* getShape(int number);
+    int getAmount() const;
   
 };
 
