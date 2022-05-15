@@ -13,17 +13,17 @@ class ShapeLoader {
   std::vector <std::string> fileLines;
   int amountShapes = 0;
   
-  std::vector<std::string>getFileString();
-  void generateArrayNumStates();
-  void generateShapeStates(ShapeState* states);
-  void parseToState(std::string str, ShapeState &currentState, int y);
-  void generateShapes(ShapeState* states);
+  static std::vector<std::string>getFileString();
+  static std::vector <int> getNumStates(std::vector <std::string> &fileLines);
+  static void generateShapeStates(ShapeState* states, std::vector <std::string> &fileLines);
+  static void parseToState(std::string str, ShapeState &currentState, int y);
+  void generateShapes(ShapeState* states, std::vector <int> &numStates);
 
 public:
 
   void load();
   Shape* getShape(int number);
-  int getAmount();
+  int getAmount() const;
   
 };
 
