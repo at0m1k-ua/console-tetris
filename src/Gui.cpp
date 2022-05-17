@@ -71,3 +71,11 @@ void Gui::fillCell(int x, int y) {
 	mvwaddch(frame, y + 1, 2*x + 1, ' ');
 	mvwaddch(frame, y + 1, 2*x + 2, ' ');
 }
+
+void Gui::drawGameField(int **gameField) {
+    for(int i = 0; i < frame_size_y; i++) {
+        for(int j = 0; j < frame_size_x; j++) {
+            paint(j, i, gameField[i][j]);
+        }
+    }
+}

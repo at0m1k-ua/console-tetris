@@ -1,33 +1,24 @@
 #include "ShapeLoader.h"
 #include "Shape.h"
 #include "GameField.h"
+#include "Gui.h"
 #include <iostream>
 
 using namespace std;
 
 int main() {
-  auto* loader = new ShapeLoader();
-  loader->load();
-
-  for (int i = 0; i < loader->getAmount(); i++) {
-      Shape* shape = loader->getShape(i);
-      ShapeState* state = shape->getCurrentState();
-      for (int y = 0; y < 4; y++) {
-          for (int x = 0; x < 4; x++) {
-              cout << state->getValue(x, y) << ' ';
-          }
-          cout << "\n";
-      }
-      cout << endl;
-  }
-  auto* gameField = new GameField(10, 10);
-  for(int i = 0; i < 10; i++)
-  {
-      for (int j = 0; j < 10; j++)
-      {
-          std::cout << gameField->getFieldValue(j, i) << " ";
-      }
-      std::cout << std::endl;
-  }
+    int const gf_size_x = 25;
+    int const gf_size_y = 25;
+  //auto* loader = new ShapeLoader();
+  auto* gameField = new GameField(gf_size_x, gf_size_y);
+  gameField->field[0][0] = 1;
+  gameField->field[0][1] = 2;
+  gameField->field[0][2] = 3;
+  gameField->field[1][0] = 4;
+  gameField->field[1][1] = 5;
+  gameField->field[1][1] = 6;
+  auto* gui = new Gui(gf_size_x, gf_size_y);
+  gui->init();
+  gui->drawGameField(gameField->field);
   return 0;
 }

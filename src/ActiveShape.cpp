@@ -27,5 +27,5 @@ void ActiveShape::setNextState() {
 }
 
 bool ActiveShape::touchesGameFieldState() {
-    
+    return false;
 }
