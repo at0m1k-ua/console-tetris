@@ -1,8 +1,7 @@
-#include "ShapeLoader.h"
-#include "Shape.h"
 #include "GameField.h"
 #include "Gui.h"
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -20,5 +19,9 @@ int main() {
   auto* gui = new Gui(gf_size_x, gf_size_y);
   gui->init();
   gui->drawGameField(gameField->field);
+  while (true) {
+      getchar();
+      gui->updateScreen();
+  }
   return 0;
 }
