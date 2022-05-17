@@ -1,7 +1,7 @@
 #include "ActiveShape.h"
 
 ActiveShape::ActiveShape(GameField* m_gm, Gui* m_gui, Shape *shape, int m_color, int m_x)
-    : gamefield(m_gm), gui(m_gui), StatesList(shape->getCurrentState()), color(m_color), x(m_x)
+    : gamefield(m_gm), gui(m_gui), statesList(shape->getCurrentState()), color(m_color), x(m_x)
 {
     y = 0;
 }
@@ -27,5 +27,13 @@ void ActiveShape::setNextState() {
 }
 
 bool ActiveShape::touchesBottom() {
+
+}
+
+bool ActiveShape::touchesLeft() {
+
+}
+
+bool ActiveShape::touchesRight() {
 
 }
