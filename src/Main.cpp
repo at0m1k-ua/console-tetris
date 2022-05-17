@@ -1,7 +1,5 @@
-#include "GameField.h"
-#include "Gui.h"
 #include <iostream>
-#include <cstdlib>
+#include "ShapeLoader.h"
 
 using namespace std;
 

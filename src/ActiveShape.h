@@ -13,6 +13,8 @@ class ActiveShape {
     int color;
     int x;
     int y;
+    bool touchesLeft();
+    bool touchesRight();
 
 public:
     ActiveShape(GameField* m_gm, Gui* m_gui, Shape *shape, int m_color, int m_x);
@@ -21,7 +23,7 @@ public:
     void moveRight();
     void moveDown();
     void setNextState();
-    bool touchesGameFieldState();
+    bool touchesBottom();
 };
 
 #endif
