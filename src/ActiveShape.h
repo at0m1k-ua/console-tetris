@@ -7,14 +7,14 @@
 #include "ShapeLoader.h"
 
 class ActiveShape {
+    GameField* gamefield;
+    Gui* gui;
+    ShapeState* StatesList;
+    int color;
     int x;
     int y;
-    int color;
-    ShapeState* StatesList;
-    Gui* gui;
-    GameField* gamefield;
 
-    public:
+public:
     ActiveShape(GameField* m_gm, Gui* m_gui, Shape *shape, int m_color, int m_x);
     int getColor();
     void moveLeft();

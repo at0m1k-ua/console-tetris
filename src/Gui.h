@@ -18,6 +18,7 @@ public:
 	void updateFrame();
 	void paint(int x, int y, int color);
 	void fillCell(int x, int y);
+    void drawGameField(int **gameField);
 };
 
 #endif
