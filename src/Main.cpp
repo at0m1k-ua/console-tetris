@@ -4,22 +4,31 @@
 using namespace std;
 
 int main() {
-    int const gf_size_x = 25;
-    int const gf_size_y = 25;
-  //auto* loader = new ShapeLoader();
-  auto* gameField = new GameField(gf_size_x, gf_size_y);
-  gameField->field[0][0] = 1;
-  gameField->field[0][1] = 2;
-  gameField->field[0][2] = 3;
-  gameField->field[1][0] = 4;
-  gameField->field[1][1] = 5;
-  gameField->field[1][1] = 6;
-  auto* gui = new Gui(gf_size_x, gf_size_y);
-  gui->init();
-  gui->drawGameField(gameField->field);
-  while (true) {
-      getchar();
-      gui->updateScreen();
-  }
-  return 0;
+    auto* shapeLoader = new ShapeLoader();
+
+    shapeLoader->load();
+    ShapeState* shapeState = shapeLoader->getShape(0)->getCurrentState();
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            cout << shapeState->getValue(j, i) << ' ';
+        }
+        cout << endl;
+    }
+
+    for (int i = 0; i < 4; i++){
+        cout << shapeState->getBottomCellsDistance(i) << ' ';
+    }
+    cout << endl;
+
+    for (int i = 0; i < 4; i++){
+        cout << shapeState->getLeftCellsDistance(i) << ' ';
+    }
+    cout << endl;
+
+    for (int i = 0; i < 4; i++){
+        cout << shapeState->getRightCellsDistance(i) << ' ';
+    }
+    cout << endl;
+    return 0;
 }

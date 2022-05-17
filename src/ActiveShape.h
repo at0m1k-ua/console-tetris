@@ -9,7 +9,7 @@
 class ActiveShape {
     GameField* gamefield;
     Gui* gui;
-    ShapeState* StatesList;
+    ShapeState* statesList;
     int color;
     int x;
     int y;
