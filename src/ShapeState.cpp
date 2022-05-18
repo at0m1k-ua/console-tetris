@@ -35,7 +35,7 @@ void ShapeState::countBottomCellsDistances() {
         int distance = -1;
         for (int j = 3; j >= 0 && distance == -1; j--) {
             if (getValue(i, j)){
-                distance = j;
+                distance = j + 1;
             }
         }
         bottomCellsDistances[i] = distance;
@@ -47,7 +47,7 @@ void ShapeState::countLeftCellsDistances() {
         int distance = -1;
         for (int j = 0; j < 4 && distance == -1; j++) {
             if(getValue(j, i)) {
-                distance = j;
+                distance = j + 1;
             }
         }
         leftCellsDistances[i] = distance;
@@ -59,7 +59,7 @@ void ShapeState::countRightCellsDistances() {
         int distance = -1;
         for (int j = 3; j >= 0 && distance == -1; j-- ) {
             if (getValue(j, i)) {
-                distance = j;
+                distance = j + 1;
             }
         }
         rightCellsDistances[i] = distance;
