@@ -96,3 +96,10 @@ void Gui::eraseActiveShape(ActiveShape* shape) {
 WINDOW* Gui::getWin() {
 	return frame;
 }
+void Gui::drawGameField(int **gameField) {
+    for(int i = 0; i < frame_size_y; i++) {
+        for(int j = 0; j < frame_size_x; j++) {
+            paint(j, i, gameField[i][j]);
+        }
+    }
+}

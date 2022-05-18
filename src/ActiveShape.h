@@ -4,11 +4,11 @@
 #include "Shape.h"
 #include "GameField.h"
 #include "ShapeLoader.h"
+#include "ShapeState.h"
 
 class Gui;
 
 class ActiveShape {
-
     GameField* gamefield;
     Gui* gui;
     ShapeState* statesList;
@@ -27,6 +27,9 @@ class ActiveShape {
     int getX();
     int getY();
     ShapeState* getStatesList();
+    bool touchesBottom();
+    bool touchesLeft();
+    bool touchesRight();
 };
 
 #endif

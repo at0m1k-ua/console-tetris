@@ -7,17 +7,15 @@
 #include <fstream>
 #include <iostream>
 class ShapeLoader {
-  
-  Shape** shapes;
-  std::vector <int> numStates;
-  std::vector <std::string> fileLines;
-  int amountShapes = 0;
-  
-  static std::vector<std::string>getFileString();
-  static std::vector <int> getNumStates(std::vector <std::string> &fileLines);
-  static void generateShapeStates(ShapeState* states, std::vector <std::string> &fileLines);
-  static void parseToState(std::string str, ShapeState &currentState, int y);
-  void generateShapes(ShapeState* states, std::vector <int> &numStates);
+
+    Shape** shapes = nullptr;
+    int amountShapes = 0;
+
+    static std::vector<std::string>getFileString();
+    static std::vector <int> getNumStates(std::vector <std::string> &fileLines);
+    static void generateShapeStates(ShapeState* states, std::vector <std::string> &fileLines);
+    static void parseToState(std::string str, ShapeState &currentState, int y);
+    void generateShapes(ShapeState* states, std::vector <int> &numStates);
 
 public:
 

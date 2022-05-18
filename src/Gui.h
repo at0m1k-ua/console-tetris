@@ -22,6 +22,7 @@ public:
 	void fillCell(int x, int y);
 	void drawActiveShape(ActiveShape* shape);
 	void eraseActiveShape(ActiveShape* shape);
+    void drawGameField(int **gameField);
 };
 
 #endif
