@@ -39,7 +39,7 @@ void ActiveShape::setNextState() {
 }
 
 bool ActiveShape::touchesGameFieldState() {
-    return false;
+
 }
 
 int ActiveShape::getX() {
@@ -52,4 +52,15 @@ int ActiveShape::getY() {
 
 ShapeState* ActiveShape::getStatesList() {
     return statesList;
+}
+bool ActiveShape::touchesBottom() {
+
+}
+
+bool ActiveShape::touchesLeft() {
+
+}
+
+bool ActiveShape::touchesRight() {
+
 }
