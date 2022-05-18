@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "Gui.h"
+#include "ActiveShape.h"
 
 Gui::Gui(int gf_size_x, int gf_size_y) {
 	frame_size_x = 2*gf_size_x;
@@ -70,4 +71,28 @@ void Gui::paint(int x, int y, int color) {
 void Gui::fillCell(int x, int y) {
 	mvwaddch(frame, y + 1, 2*x + 1, ' ');
 	mvwaddch(frame, y + 1, 2*x + 2, ' ');
+}
+
+void Gui::drawActiveShape(ActiveShape* shape) {
+	for(int i = 0; i < 4; i++) {
+		for(int j = 0; j < 4; j++) {
+			if(shape->getStatesList()->getValue(i, j) == true) {
+				paint(i + shape->getX(), j + shape->getY(), shape->getColor());
+			}
+		}
+	}
+}
+
+void Gui::eraseActiveShape(ActiveShape* shape) {
+	for(int i = 0; i < 4; i++) {
+		for(int j = 0; j < 4; j++) {
+			if(shape->getStatesList()->getValue(i, j) == true) {
+				paint(i + shape->getX(), j + shape->getY(), 0);
+			}
+		}
+	}
+}
+
+WINDOW* Gui::getWin() {
+	return frame;
 }
