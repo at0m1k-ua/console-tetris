@@ -47,7 +47,7 @@ void ShapeState::countLeftCellsDistances() {
         int distance = -1;
         for (int j = 0; j < 4 && distance == -1; j++) {
             if(getValue(j, i)) {
-                distance = j + 1;
+                distance = j - 1;
             }
         }
         leftCellsDistances[i] = distance;
