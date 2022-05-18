@@ -2,6 +2,7 @@
 #ifndef _GUI_H_
 #define _GUI_H_
 #include <ncurses.h>
+#include "ActiveShape.h"
 
 class Gui {
 	int screen_size_x,
@@ -13,11 +14,14 @@ class Gui {
 	WINDOW* frame;
 public:
 	Gui(int in_gf_size_x, int in_gf_size_y);
+	WINDOW* getWin();
 	void init();	
 	void updateScreen();
 	void updateFrame();
 	void paint(int x, int y, int color);
 	void fillCell(int x, int y);
+	void drawActiveShape(ActiveShape* shape);
+	void eraseActiveShape(ActiveShape* shape);
 };
 
 #endif

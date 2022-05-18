@@ -10,7 +10,7 @@ GameField::GameField(int gf_size_x, int gf_size_y)
     {
         field = new int *[gf_size_y];
     }
-    catch (std::bad_alloc xa)
+    catch (std::bad_alloc &xa)
     {
         std::cout << "Allocation failure.\n";
         return;
