@@ -39,3 +39,17 @@ int GameField::getFieldValue(int x, int y)
 {
     return field[y][x];
 }
+
+void GameField::setFieldValue(int x, int y, int value) {
+    field[y][x] = value;
+}
+
+void GameField::mergeActiveShape(ActiveShape* shape) {
+    for (int in_y = 0; in_y < 4; in_y++) {
+        for(int in_x = 0; in_x < 4; in_x++) {
+            if (shape->getCurrentState()->getValue(in_x, in_y)) {
+                field[shape->getY() + in_y][shape->getX() + in_x] = shape->getColor();
+            }
+        }
+    }
+}
