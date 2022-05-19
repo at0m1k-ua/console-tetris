@@ -1,8 +1,12 @@
 #pragma once
 #ifndef _GUI_H_
 #define _GUI_H_
+
 #include <ncurses.h>
-#include "ActiveShape.h"
+#include "GameField.h"
+
+class ActiveShape;
+class GameField;
 
 class Gui {
 	int screen_size_x,
@@ -12,17 +16,21 @@ class Gui {
 	    frame_x,
 	    frame_y;
 	WINDOW* frame;
+    GameField* gameField;
+    ActiveShape* activeShape;
+
 public:
-	Gui(int in_gf_size_x, int in_gf_size_y);
+	Gui(GameField* gameField);
 	WINDOW* getWin();
 	void init();	
 	void updateScreen();
 	void updateFrame();
 	void paint(int x, int y, int color);
 	void fillCell(int x, int y);
-	void drawActiveShape(ActiveShape* shape);
-	void eraseActiveShape(ActiveShape* shape);
-    void drawGameField(int **gameField);
+	void eraseActiveShape();
+    void setActiveShape(ActiveShape* activeShape);
+    void drawGameField();
+    void drawActiveShape();
 };
 
 #endif

@@ -3,10 +3,12 @@
 #include <iostream>
 #include "Gui.h"
 #include "ActiveShape.h"
+#include "GameField.h"
 
-Gui::Gui(int gf_size_x, int gf_size_y) {
-	frame_size_x = 2*gf_size_x;
-	frame_size_y = gf_size_y;
+Gui::Gui(GameField* gameField) {
+    this->gameField = gameField;
+	frame_size_x = 2*gameField->getSizeX();
+	frame_size_y = gameField->getSizeY();
 }
 
 void Gui::init() {
@@ -26,6 +28,8 @@ void Gui::init() {
 	init_pair(6, COLOR_BLACK, COLOR_MAGENTA);   
 
 	frame = newwin(frame_size_y + 2, frame_size_x + 2, 0, 0);
+    keypad(frame, true);
+    nodelay(frame, TRUE);
 
 	updateScreen();
 
@@ -48,6 +52,8 @@ void Gui::updateScreen() {
 
     refresh();
     move(0, 0);
+    drawGameField();
+    drawActiveShape();
     updateFrame();
 }
 
@@ -76,18 +82,22 @@ void Gui::fillCell(int x, int y) {
 void Gui::drawActiveShape(ActiveShape* shape) {
 	for(int i = 0; i < 4; i++) {
 		for(int j = 0; j < 4; j++) {
-			if(shape->getStatesList()->getValue(i, j) == true) {
-				paint(i + shape->getX(), j + shape->getY(), shape->getColor());
+			if(activeShape->getCurrentState()->getValue(i, j)) {
+				paint(i + activeShape->getX(), j + activeShape->getY(), activeShape->getColor());
 			}
 		}
 	}
 }
 
-void Gui::eraseActiveShape(ActiveShape* shape) {
+void Gui::setActiveShape(ActiveShape *shape) {
+    this->activeShape = shape;
+}
+
+void Gui::eraseActiveShape() {
 	for(int i = 0; i < 4; i++) {
 		for(int j = 0; j < 4; j++) {
-			if(shape->getStatesList()->getValue(i, j) == true) {
-				paint(i + shape->getX(), j + shape->getY(), 0);
+			if(activeShape->getCurrentState()->getValue(i, j)) {
+				paint(i + activeShape->getX(), j + activeShape->getY(), 0);
 			}
 		}
 	}
@@ -96,10 +106,10 @@ void Gui::eraseActiveShape(ActiveShape* shape) {
 WINDOW* Gui::getWin() {
 	return frame;
 }
-void Gui::drawGameField(int **gameField) {
-    for(int i = 0; i < frame_size_y; i++) {
-        for(int j = 0; j < frame_size_x; j++) {
-            paint(j, i, gameField[i][j]);
+void Gui::drawGameField() {
+    for(int i = 0; i < gameField->getSizeY(); i++) {
+        for(int j = 0; j < gameField->getSizeX(); j++) {
+            paint(j, i, gameField->getFieldValue(j, i));
         }
     }
 }

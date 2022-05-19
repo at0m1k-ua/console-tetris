@@ -1,5 +1,5 @@
 #include "GameField.h"
-#include <new>
+#include "ActiveShape.h"
 #include <iostream>
 
 GameField::GameField(int gf_size_x, int gf_size_y)
@@ -25,12 +25,6 @@ GameField::~GameField()
     {
         delete[] field[i];
     }
-}
-void GameField::obj_fall()
-{
-}
-void GameField::obj_stop()
-{
 }
 int GameField::getSizeX()
 {
