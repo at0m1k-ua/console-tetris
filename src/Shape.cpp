@@ -7,9 +7,10 @@ Shape::Shape(ShapeState* firstShapeState, int rotatesCount) {
 
 void Shape::createListOfRotatedStates(ShapeState* firstShapeState, int rotatesCount) {
 	ShapeState* lastRotation = firstShapeState;
-	for (int i = 0; i < rotatesCount; i++) {
-        lastRotation->countCellsDistances();
+    lastRotation->countCellsDistances();
+	for (int i = 1; i < rotatesCount; i++) {
 		ShapeState* newRotatedState = rotateState(lastRotation);
+        newRotatedState->countCellsDistances();
 		lastRotation->setNext(newRotatedState);
 		lastRotation = newRotatedState;
 	}
