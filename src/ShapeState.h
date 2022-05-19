@@ -4,6 +4,7 @@
 
 class ShapeState {
 
+    const int NO_CELLS = -2;
 	bool* values;
     int* bottomCellsDistances;
     int* leftCellsDistances;

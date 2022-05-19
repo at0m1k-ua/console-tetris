@@ -5,6 +5,7 @@ ShapeState::ShapeState() {
     bottomCellsDistances = new int[4]{-1};
     leftCellsDistances = new int[4]{-1};
     rightCellsDistances = new int[4]{-1};
+    next = nullptr;
 }
 
 ShapeState::~ShapeState() {
@@ -32,8 +33,8 @@ void ShapeState::setValue(int x, int y, bool value) {
 
 void ShapeState::countBottomCellsDistances() {
     for (int i = 0; i < 4; i++) {
-        int distance = -1;
-        for (int j = 3; j >= 0 && distance == -1; j--) {
+        int distance = NO_CELLS;
+        for (int j = 3; j >= 0 && distance == NO_CELLS; j--) {
             if (getValue(i, j)){
                 distance = j + 1;
             }
@@ -44,8 +45,8 @@ void ShapeState::countBottomCellsDistances() {
 
 void ShapeState::countLeftCellsDistances() {
     for (int i = 0; i < 4; i++) {
-        int distance = -1;
-        for (int j = 0; j < 4 && distance == -1; j++) {
+        int distance = NO_CELLS;
+        for (int j = 0; j < 4 && distance == NO_CELLS; j++) {
             if(getValue(j, i)) {
                 distance = j - 1;
             }
@@ -56,8 +57,8 @@ void ShapeState::countLeftCellsDistances() {
 
 void ShapeState::countRightCellsDistances() {
     for (int i = 0; i < 4; i++) {
-        int distance = -1;
-        for (int j = 3; j >= 0 && distance == -1; j-- ) {
+        int distance = NO_CELLS;
+        for (int j = 3; j >= 0 && distance == NO_CELLS; j-- ) {
             if (getValue(j, i)) {
                 distance = j + 1;
             }
