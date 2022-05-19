@@ -11,10 +11,10 @@ class GameField
 
 	int gf_size_x;
 	int gf_size_y;
-
+    int **field;
 
 public:
-    int **field;
+
 	GameField(int gf_size_x, int gf_size_y);
 	~GameField();
     int getSizeX();

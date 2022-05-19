@@ -79,7 +79,7 @@ void Gui::fillCell(int x, int y) {
 	mvwaddch(frame, y + 1, 2*x + 2, ' ');
 }
 
-void Gui::drawActiveShape(ActiveShape* shape) {
+void Gui::drawActiveShape() {
 	for(int i = 0; i < 4; i++) {
 		for(int j = 0; j < 4; j++) {
 			if(activeShape->getCurrentState()->getValue(i, j)) {
