@@ -4,7 +4,6 @@
 
 class ShapeState {
 
-    const int NO_CELLS = -2;
 	bool* values;
     int* bottomCellsDistances;
     int* leftCellsDistances;
@@ -25,6 +24,7 @@ public:
     int getLeftCellsDistance(int index);
     int getRightCellsDistance(int index);
     void countCellsDistances();
+    const static int NO_CELLS = -2;
 };
 
 #endif

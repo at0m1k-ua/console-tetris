@@ -30,6 +30,7 @@ class ActiveShape {
     bool touchesLeft();
     bool touchesLeft(ShapeState *state);
     bool touchesRight();
+    bool touchesRight(ShapeState *state);
 };
 
 #endif
