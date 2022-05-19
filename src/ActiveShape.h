@@ -23,12 +23,12 @@ class ActiveShape {
     void moveRight();
     void moveDown();
     void setNextState();
-    bool touchesGameFieldState();
     int getX();
     int getY();
     ShapeState* getStatesList();
     bool touchesBottom();
     bool touchesLeft();
+    bool touchesLeft(ShapeState *state);
     bool touchesRight();
 };
 

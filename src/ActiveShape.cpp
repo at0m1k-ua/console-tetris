@@ -38,10 +38,6 @@ void ActiveShape::setNextState() {
 
 }
 
-bool ActiveShape::touchesGameFieldState() {
-
-}
-
 int ActiveShape::getX() {
     return x;
 }
@@ -54,13 +50,26 @@ ShapeState* ActiveShape::getStatesList() {
     return statesList;
 }
 bool ActiveShape::touchesBottom() {
-
+    return false;
 }
 
 bool ActiveShape::touchesLeft() {
+    return touchesLeft(statesList);
+}
 
+bool ActiveShape::touchesLeft(ShapeState* state) {
+    for (int cell_y = 0; cell_y < 4; cell_y++) {
+        int cell_x = state->getLeftCellsDistance(cell_y);
+        if (
+                cell_x < -1 // (-1)|XX is possible
+                || (cell_x >= 0 && gamefield->getFieldValue(x + cell_x, y + cell_y) != 0) // cell is colored
+                ) {
+            return false;
+        }
+    }
+    return true;
 }
 
 bool ActiveShape::touchesRight() {
-
+    return false;
 }
