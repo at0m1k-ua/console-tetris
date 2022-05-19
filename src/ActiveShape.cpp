@@ -23,7 +23,7 @@ void ActiveShape::moveDown() {
 }
 
 void ActiveShape::moveLeft() {
-    if(x > 0) {
+    if (!touchesLeft()) {
         x--;
     }
 }
@@ -61,13 +61,13 @@ bool ActiveShape::touchesLeft(ShapeState* state) {
     for (int cell_y = 0; cell_y < 4; cell_y++) {
         int cell_x = state->getLeftCellsDistance(cell_y);
         if (
-                cell_x < -1 // (-1)|XX is possible
-                || (cell_x >= 0 && gamefield->getFieldValue(x + cell_x, y + cell_y) != 0) // cell is colored
+                x + cell_x < -1 // (-1)|XX is possible
+                || (x + cell_x >= 0 && gamefield->getFieldValue(x + cell_x, y + cell_y) != 0) // cell is colored
                 ) {
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 bool ActiveShape::touchesRight() {
