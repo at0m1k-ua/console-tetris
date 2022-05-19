@@ -29,7 +29,7 @@ void ActiveShape::moveLeft() {
 }
 
 void ActiveShape::moveRight() {
-    if(x < gamefield->getSizeX() - 2) {
+    if(!touchesRight()) {
         x++;
     }
 }
@@ -61,8 +61,9 @@ bool ActiveShape::touchesLeft(ShapeState* state) {
     for (int cell_y = 0; cell_y < 4; cell_y++) {
         int cell_x = state->getLeftCellsDistance(cell_y);
         if (
-                x + cell_x < -1 // (-1)|XX is possible
-                || (x + cell_x >= 0 && gamefield->getFieldValue(x + cell_x, y + cell_y) != 0) // cell is colored
+                cell_x != ShapeState::NO_CELLS // not necessary there for now, but demonstrative
+                && x + cell_x < 0
+                || gamefield->getFieldValue(x + cell_x, y + cell_y) != 0 // cell is colored
                 ) {
             return true;
         }
@@ -71,5 +72,19 @@ bool ActiveShape::touchesLeft(ShapeState* state) {
 }
 
 bool ActiveShape::touchesRight() {
+    return touchesRight(statesList);
+}
+
+bool ActiveShape::touchesRight(ShapeState* state) {
+    for (int cell_y = 0; cell_y < 4; cell_y++) {
+        int cell_x = state->getRightCellsDistance(cell_y);
+        if (
+                cell_x != ShapeState::NO_CELLS
+                && x + cell_x >= gamefield->getSizeX() // XX|(there) is possible
+                //|| gamefield->getFieldValue(x + cell_x, y + cell_y) != 0 // this shit doesn't work
+                ) {
+            return true;
+        }
+    }
     return false;
 }
