@@ -113,3 +113,31 @@ void Gui::drawGameField() {
         }
     }
 }
+void Gui::moveActiveShapeLeft() {
+    eraseActiveShape();
+    activeShape->moveLeft();
+    drawActiveShape();
+    updateFrame();
+}
+
+void Gui::moveActiveShapeRight() {
+    eraseActiveShape();
+    activeShape->moveRight();
+    drawActiveShape();
+    updateFrame();
+}
+
+void Gui::moveActiveShapeDown() {
+    eraseActiveShape();
+    activeShape->moveDown();
+    drawActiveShape();
+    updateFrame();
+}
+
+void Gui::rotateActiveShape() {
+    eraseActiveShape();
+    activeShape->rotate();
+    drawActiveShape();
+    updateFrame();
+}
+
