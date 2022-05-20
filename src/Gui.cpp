@@ -113,6 +113,7 @@ void Gui::drawGameField() {
         }
     }
 }
+
 void Gui::moveActiveShapeLeft() {
     eraseActiveShape();
     activeShape->moveLeft();
@@ -139,6 +140,32 @@ void Gui::rotateActiveShape() {
     activeShape->rotate();
     drawActiveShape();
     updateFrame();
+}
+
+void Gui::clearGameField() {
+    for(int i = 0; i < gameField->getSizeY(); i++) {
+        for(int j = 0; j < gameField->getSizeX(); j++) {
+            paint(j, i, 0);
+        }
+    }
+}
+
+void Gui::clearFrame() {
+	clearGameField();
+	wborder(frame, ' ', ' ', ' ',' ',' ',' ',' ',' ');
+}
+
+void Gui::displayResult(bool flag) {
+	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	if(flag) {
+		attron(COLOR_PAIR(2));
+		mvprintw(screen_size_y/2, (screen_size_x/2) - 7, "YOU WIN");
+		attroff(COLOR_PAIR(2));
+	}
+	attron(COLOR_PAIR(1));
+	mvprintw(screen_size_y/2, screen_size_x/2 - 9, "GAME OVER");
+	attroff(COLOR_PAIR(1));
 }
 
 
