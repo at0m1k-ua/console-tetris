@@ -31,6 +31,10 @@ public:
     void setActiveShape(ActiveShape* activeShape);
     void drawGameField();
     void drawActiveShape();
+    void moveActiveShapeLeft();
+    void moveActiveShapeRight();
+    void moveActiveShapeDown();
+    void rotateActiveShape();
 };
 
 #endif

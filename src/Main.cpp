@@ -25,10 +25,7 @@ void handle(Gui* gui, ActiveShape* activeShape, GameField* gameField) {
     long currentTime = getTimeMillis();
     if (currentTime - fallPeriod > lastFallTime) {
         lastFallTime = currentTime;
-        gui->eraseActiveShape();
-        activeShape->moveDown();
-        gui->drawActiveShape();
-        gui->updateFrame();
+        gui->moveActiveShapeDown();
     }
 }
 
@@ -37,7 +34,6 @@ int main() {
     loader->load();
     auto* gamefield = new GameField(15, 20);
     auto* gui = new Gui(gamefield);
-    gamefield->setFieldValue(5, 8, 2);
     Shape *shape  = loader->getShape(0);
     auto* activeShape = new ActiveShape(gamefield, shape, 1, 0, 0);
     gui->setActiveShape(activeShape);
@@ -50,28 +46,16 @@ int main() {
         switch (choice)
         {
         case KEY_DOWN:
-            gui->eraseActiveShape();
-            activeShape->moveDown();
-            gui->drawActiveShape();
-            gui->updateFrame();
+            gui->moveActiveShapeDown();
             break;
         case KEY_LEFT:
-            gui->eraseActiveShape();
-            activeShape->moveLeft();
-            gui->drawActiveShape();
-            gui->updateFrame();
+            gui->moveActiveShapeLeft();
             break;
         case KEY_RIGHT:
-            gui->eraseActiveShape();
-            activeShape->moveRight();
-            gui->drawActiveShape();
-            gui->updateFrame();
+            gui->moveActiveShapeRight();
             break;
         case KEY_UP:
-            gui->eraseActiveShape();
-            activeShape->rotate();
-            gui->drawActiveShape();
-            gui->updateFrame();
+            gui->rotateActiveShape();
             break;
         case ERR:
             handle(gui, activeShape, gamefield);
