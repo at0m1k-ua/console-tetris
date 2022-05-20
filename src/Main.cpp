@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include <ncurses.h>
 #include <sys/time.h>
 #include "ShapeLoader.h"
@@ -20,7 +21,11 @@ void handle(Gui* gui, ActiveShape* activeShape, GameField* gameField, ShapeLoade
         gameField->mergeActiveShape(activeShape);
         activeShape->generateActiveShape(loader);
     }
-
+    if(gameField->isGameOver()) {
+        endwin();
+    	std::cout << "YOU LOSE" << std::endl;
+    	exit(1);
+    }
     const int fallPeriod = 1000;  //let it const for now
     static long lastFallTime = getTimeMillis();
     long currentTime = getTimeMillis();

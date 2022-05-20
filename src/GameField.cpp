@@ -53,3 +53,12 @@ void GameField::mergeActiveShape(ActiveShape* shape) {
         }
     }
 }
+
+bool GameField::isGameOver() {
+    for(int x = 0; x < gf_size_x; x++) {
+        if(field[0][x]) {
+            return true;
+        }
+    }
+    return false;
+}
