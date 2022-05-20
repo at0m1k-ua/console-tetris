@@ -6,7 +6,7 @@ ActiveShape::ActiveShape(GameField* m_gm, ShapeLoader* loader)
     gamefield = m_gm;
     statesList = loader->getShape(rand() % 8)->getCurrentState();
     color = rand() % 6 + 1;
-    x = gamefield->getSizeX() / 2 + 2;
+    x = gamefield->getSizeX() / 2 - 2;
     y = 0;
 
 }

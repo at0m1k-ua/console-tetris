@@ -16,15 +16,15 @@ long getTimeMillis() {
     return (time_now.tv_sec * 1000) + (time_now.tv_usec / 1000);
 }
 
-void handle(Gui* gui, ActiveShape* activeShape, GameField* gameField, ShapeLoader* loader) {
+void handle(Gui* gui, ActiveShape* activeShape, GameField* gameField, ShapeLoader* loader, bool* end) {
     if (activeShape->touchesBottom()) {
         gameField->mergeActiveShape(activeShape);
         activeShape->generateActiveShape(loader);
     }
     if(gameField->isGameOver()) {
-        endwin();
-    	std::cout << "YOU LOSE" << std::endl;
-    	exit(1);
+        gui->clearFrame();
+        gui->displayResult(false);
+        *end = false;
     }
     const int fallPeriod = 1000;  //let it const for now
     static long lastFallTime = getTimeMillis();
@@ -46,8 +46,8 @@ int main() {
     gui->updateScreen();
     int choice;
     curs_set(0);
-
-    while((choice = wgetch(gui->getWin())) != KEY_F(1)) {
+    bool startGame = true;
+    while((choice = wgetch(gui->getWin())) != KEY_F(2) && startGame) {
         switch (choice)
         {
         case KEY_DOWN:
@@ -63,13 +63,15 @@ int main() {
             gui->rotateActiveShape();
             break;
         case ERR:
-            handle(gui, activeShape, gamefield, loader);
+            handle(gui, activeShape, gamefield, loader, &startGame);
             break;
         default:
             gui->updateScreen();
             break;
         }
     }
+    nodelay(gui->getWin(), FALSE);
+    getch();
     endwin();
 
   return 0;

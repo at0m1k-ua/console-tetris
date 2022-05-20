@@ -30,11 +30,14 @@ public:
 	void eraseActiveShape();
     void setActiveShape(ActiveShape* activeShape);
     void drawGameField();
+	void clearGameField();
     void drawActiveShape();
     void moveActiveShapeLeft();
     void moveActiveShapeRight();
     void moveActiveShapeDown();
     void rotateActiveShape();
+	void clearFrame();
+	void displayResult(bool flag);
     void generateNewActiveShape(ShapeLoader* loader);
 };
 
