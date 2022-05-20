@@ -15,9 +15,10 @@ long getTimeMillis() {
     return (time_now.tv_sec * 1000) + (time_now.tv_usec / 1000);
 }
 
-void handle(Gui* gui, ActiveShape* activeShape, GameField* gameField) {
+void handle(Gui* gui, ActiveShape* activeShape, GameField* gameField, ShapeLoader* loader) {
     if (activeShape->touchesBottom()) {
         gameField->mergeActiveShape(activeShape);
+        activeShape->generateActiveShape(loader);
     }
 
     const int fallPeriod = 1000;  //let it const for now
@@ -34,8 +35,7 @@ int main() {
     loader->load();
     auto* gamefield = new GameField(15, 20);
     auto* gui = new Gui(gamefield);
-    Shape *shape  = loader->getShape(0);
-    auto* activeShape = new ActiveShape(gamefield, shape, 1, 0, 0);
+    auto* activeShape = new ActiveShape(gamefield, loader);
     gui->setActiveShape(activeShape);
     gui->init();
     gui->updateScreen();
@@ -58,7 +58,7 @@ int main() {
             gui->rotateActiveShape();
             break;
         case ERR:
-            handle(gui, activeShape, gamefield);
+            handle(gui, activeShape, gamefield, loader);
             break;
         default:
             gui->updateScreen();

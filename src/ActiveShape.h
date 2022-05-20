@@ -17,7 +17,7 @@ class ActiveShape {
     int y;
 
     public:
-    ActiveShape(GameField* m_gm, Shape *shape, int m_color, int m_x, int m_y);
+    ActiveShape(GameField* m_gm, ShapeLoader* loader);
     int getColor();
     void moveLeft();
     void moveRight();
@@ -33,6 +33,7 @@ class ActiveShape {
     bool touchesRight();
     bool touchesRight(ShapeState *state);
     bool conflictsWithGameField(ShapeState *state);
+    void generateActiveShape(ShapeLoader* loader);
 };
 
 #endif
