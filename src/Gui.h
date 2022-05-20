@@ -35,6 +35,7 @@ public:
     void moveActiveShapeRight();
     void moveActiveShapeDown();
     void rotateActiveShape();
+    void generateNewActiveShape(ShapeLoader* loader);
 };
 
 #endif

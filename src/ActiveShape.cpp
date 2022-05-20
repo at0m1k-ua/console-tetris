@@ -1,12 +1,13 @@
 #include "ActiveShape.h"
 
-ActiveShape::ActiveShape(GameField* m_gm, Shape *shape, int m_color, int m_x, int m_y)
+ActiveShape::ActiveShape(GameField* m_gm, ShapeLoader* loader)
 {
+    srand(time(nullptr));
     gamefield = m_gm;
-    statesList = shape->getCurrentState();
-    color = m_color;
-    x = m_x;
-    y = m_y;
+    statesList = loader->getShape(rand() % 8)->getCurrentState();
+    color = rand() % 6 + 1;
+    x = gamefield->getSizeX() / 2 + 2;
+    y = 0;
 
 }
 
@@ -120,4 +121,12 @@ bool ActiveShape::conflictsWithGameField(ShapeState* state) {
     }
 
     return false;
+}
+
+void ActiveShape::generateActiveShape(ShapeLoader* loader) {
+    srand(time(NULL));
+    Shape* currentShape = loader->getShape(rand()%6);
+    statesList = currentShape->getCurrentState();
+    color = rand() % 6 + 1;
+    x = gamefield->getSizeX() / 2 - 2;
 }
