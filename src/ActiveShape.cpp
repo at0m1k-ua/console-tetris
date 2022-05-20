@@ -129,4 +129,5 @@ void ActiveShape::generateActiveShape(ShapeLoader* loader) {
     statesList = currentShape->getCurrentState();
     color = rand() % 6 + 1;
     x = gamefield->getSizeX() / 2 - 2;
+    y = 0;
 }
