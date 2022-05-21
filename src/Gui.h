@@ -18,16 +18,17 @@ class Gui {
 	WINDOW* frame;
     GameField* gameField;
     ActiveShape* activeShape;
+    void updateFrame();
+    void fillCell(int x, int y);
+    void paint(int x, int y, int color);
+    void eraseActiveShape();
+    void clearFrame();
 
 public:
 	Gui(GameField* gameField, ActiveShape* activeShape);
 	WINDOW* getWin();
 	void init();	
 	void updateScreen();
-	void updateFrame();
-	void paint(int x, int y, int color);
-	void fillCell(int x, int y);
-	void eraseActiveShape();
     void drawGameField();
     void drawActiveShape();
     void moveActiveShapeLeft();
@@ -35,7 +36,7 @@ public:
     void moveActiveShapeDown();
     void rotateActiveShape();
     void setGameField(GameField* gameField);
-	void clearFrame();
+	void displayResult(bool flag);
 	void displayWin();
 	void displayLose();
     bool isGameOver();
