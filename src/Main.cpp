@@ -7,6 +7,7 @@
 #include "GameField.h"
 #include "Gui.h"
 #include "ActiveShape.h"
+#include <unistd.h>
 
 using namespace std;
 
@@ -43,11 +44,11 @@ int main() {
     curs_set(0);
     while((choice = wgetch(gui->getWin())) != KEY_F(2)) {
         if(gui->isGameOver()) {
-            gui->displayResult(false);
+            gui->displayLose();
             break;
         }
         else if(gui->isGameWon()) {
-            gui->displayResult(true);
+            gui->displayWin();
             break;
         }
         switch (choice)
@@ -74,6 +75,7 @@ int main() {
     }
     nodelay(gui->getWin(), FALSE);
     getch();
+
     endwin();
 
   return 0;

@@ -149,21 +149,20 @@ void Gui::clearFrame() {
     wborder(frame, ' ', ' ', ' ',' ',' ',' ',' ',' ');
 }
 
-void Gui::displayResult(bool flag) {
+void Gui::displayWin() {
 	init_pair(7, COLOR_GREEN, COLOR_BLACK);
+	clearFrame();
+	attron(COLOR_PAIR(7));
+	mvprintw(screen_size_y/2, (screen_size_x/2) - 7, "YOU WIN");
+	attroff(COLOR_PAIR(7));
+}
+
+void Gui::displayLose() {
 	init_pair(8, COLOR_RED, COLOR_BLACK);
-	if(flag) {
-        clearFrame();
-		attron(COLOR_PAIR(7));
-		mvprintw(screen_size_y/2, (screen_size_x/2) - 7, "YOU WIN");
-		attroff(COLOR_PAIR(7));
-	}
-	else {
-        clearFrame();
-		attron(COLOR_PAIR(8));
-		mvprintw(screen_size_y/2, screen_size_x/2 - 9, "GAME OVER");
-		attroff(COLOR_PAIR(8));
-	}
+	clearFrame();
+	attron(COLOR_PAIR(8));
+	mvprintw(screen_size_y/2, screen_size_x/2 - 9, "GAME OVER");
+	attroff(COLOR_PAIR(8));
 }
 
 bool Gui::isGameOver() {
