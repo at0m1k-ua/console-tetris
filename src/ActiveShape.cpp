@@ -4,7 +4,7 @@ ActiveShape::ActiveShape(GameField* m_gm, ShapeLoader* loader)
 {
     srand(time(nullptr));
     gamefield = m_gm;
-    statesList = loader->getShape(rand() % loader->getAmount())->getCurrentState();
+    currentShape = loader->getShape(rand() % loader->getAmount());
     color = rand() % Gui::NUM_COLORS + 1;
     x = gamefield->getSizeX() / 2 - 2;
     y = 0;
@@ -34,8 +34,8 @@ void ActiveShape::moveRight() {
 }
 
 void ActiveShape::rotate() {
-    if (!conflictsWithGameField(statesList->getNext())) {
-        statesList = statesList->getNext();
+    if (!conflictsWithGameField(currentShape->getCurrentState()->getNext())) {
+        currentShape->setNextState();
     }
 }
 
@@ -48,10 +48,10 @@ int ActiveShape::getY() {
 }
 
 ShapeState* ActiveShape::getCurrentState() {
-    return statesList;
+    return currentShape->getCurrentState();
 }
 bool ActiveShape::touchesBottom() {
-    return touchesBottom(statesList);
+    return touchesBottom(currentShape->getCurrentState());
 }
 
 bool ActiveShape::touchesBottom(ShapeState* state) {
@@ -69,7 +69,7 @@ bool ActiveShape::touchesBottom(ShapeState* state) {
 }
 
 bool ActiveShape::touchesLeft() {
-    return touchesLeft(statesList);
+    return touchesLeft(currentShape->getCurrentState());
 }
 
 bool ActiveShape::touchesLeft(ShapeState* state) {
@@ -87,7 +87,7 @@ bool ActiveShape::touchesLeft(ShapeState* state) {
 }
 
 bool ActiveShape::touchesRight() {
-    return touchesRight(statesList);
+    return touchesRight(currentShape->getCurrentState());
 }
 
 bool ActiveShape::touchesRight(ShapeState* state) {
@@ -125,9 +125,16 @@ bool ActiveShape::conflictsWithGameField(ShapeState* state) {
 
 void ActiveShape::generateActiveShape(ShapeLoader* loader) {
     srand(time(NULL));
-    Shape* currentShape = loader->getShape(rand()%loader->getAmount());
-    statesList = currentShape->getCurrentState();
-    color = rand() % Gui::NUM_COLORS + 1;
+    Shape* newShape = loader->getShape(rand()%loader->getAmount());
+    while(newShape == this->currentShape){
+        newShape = loader->getShape(rand()%loader->getAmount());
+    }
+    currentShape = newShape;
+    int newColor = rand() % Gui::NUM_COLORS + 1;
+    while (color == newColor){
+        newColor = rand() % Gui::NUM_COLORS + 1;
+    }
+    color = newColor;
     x = gamefield->getSizeX() / 2 - 2;
     y = 0;
 }

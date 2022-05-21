@@ -35,9 +35,8 @@ int main() {
     auto* loader = new ShapeLoader();
     loader->load();
     auto* gamefield = new GameField(15, 20);
-    auto* gui = new Gui(gamefield);
     auto* activeShape = new ActiveShape(gamefield, loader);
-    gui->setActiveShape(activeShape);
+    auto* gui = new Gui(gamefield, activeShape);
     gui->init();
     gui->updateScreen();
     int choice;
