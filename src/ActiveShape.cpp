@@ -123,7 +123,7 @@ bool ActiveShape::conflictsWithGameField(ShapeState* state) {
     return false;
 }
 
-void ActiveShape::generateActiveShape(ShapeLoader* loader) {
+void ActiveShape::generateNextShape(ShapeLoader* loader) {
     srand(time(NULL));
     Shape* newShape = loader->getShape(rand()%loader->getAmount());
     while(newShape == this->currentShape){

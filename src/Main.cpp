@@ -19,7 +19,7 @@ long getTimeMillis() {
 void handle(Gui* gui, ActiveShape* activeShape, GameField* gameField, ShapeLoader* loader) {
     if (activeShape->touchesBottom()) {
         gameField->mergeActiveShape(activeShape);
-        activeShape->generateActiveShape(loader);
+        activeShape->generateNextShape(loader);
     }
 
     const int fallPeriod = 1000;  //let it const for now
@@ -38,7 +38,6 @@ int main() {
     auto* activeShape = new ActiveShape(gamefield, loader);
     auto* gui = new Gui(gamefield, activeShape);
     gui->init();
-    gui->updateScreen();
     int choice;
     curs_set(0);
     while((choice = wgetch(gui->getWin())) != KEY_F(2)) {

@@ -20,8 +20,7 @@ public:
     int getSizeX();
     int getSizeY();
     int getFieldValue(int x, int y);
-    void setFieldValue(int x, int y, int value);
-    void mergeActiveShape(ActiveShape *state);
+    void mergeActiveShape(ActiveShape *shape);
 };
 
 #endif
