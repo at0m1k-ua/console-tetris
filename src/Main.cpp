@@ -38,9 +38,9 @@ int main() {
     auto* activeShape = new ActiveShape(gamefield, loader);
     auto* gui = new Gui(gamefield, activeShape);
     gui->init();
-    int choice;
     curs_set(0);
-    while((choice = wgetch(gui->getWin())) != KEY_F(2)) {
+    int choice;
+    while((choice = wgetch(gui->getFrame())) != KEY_F(2)) {
         if(gui->isGameOver()) {
             gui->displayResult(false);
             break;
@@ -71,9 +71,9 @@ int main() {
             break;
         }
     }
-    nodelay(gui->getWin(), FALSE);
+    nodelay(gui->getFrame(), FALSE);
     getch();
-    endwin();
+    gui->end();
 
   return 0;
 }

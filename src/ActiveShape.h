@@ -12,9 +12,7 @@ class GameField;
 class ActiveShape {
     GameField* gamefield;
     Shape* currentShape;
-    int color;
-    int x;
-    int y;
+    int x, y, color;
 
     public:
     ActiveShape(GameField* m_gm, ShapeLoader* loader);
@@ -27,7 +25,7 @@ class ActiveShape {
     int getY();
     ShapeState* getCurrentState();
     bool touchesBottom();
-    bool touchesBottom(ShapeState *);
+    bool touchesBottom(ShapeState* state);
     bool touchesLeft();
     bool touchesLeft(ShapeState *state);
     bool touchesRight();
