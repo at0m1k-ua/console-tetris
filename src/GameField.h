@@ -19,7 +19,7 @@ public:
 	~GameField();
     int getSizeX();
     int getSizeY();
-    int getFieldValue(int x, int y);
+    int getCellValue(int x, int y);
     void mergeActiveShape(ActiveShape *shape);
 };
 
