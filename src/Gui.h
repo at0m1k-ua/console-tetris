@@ -29,7 +29,6 @@ public:
 	void fillCell(int x, int y);
 	void eraseActiveShape();
     void drawGameField();
-	void clearGameField();
     void drawActiveShape();
     void moveActiveShapeLeft();
     void moveActiveShapeRight();
@@ -37,7 +36,8 @@ public:
     void rotateActiveShape();
     void setGameField(GameField* gameField);
 	void clearFrame();
-	void displayResult(bool flag);
+	void displayWin();
+	void displayLose();
     bool isGameOver();
     bool isGameWon();
     const static int NUM_COLORS = 6;
