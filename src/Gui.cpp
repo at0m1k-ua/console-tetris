@@ -146,7 +146,6 @@ void Gui::setGameField(GameField* gameField) {
 void Gui::clearFrame() {
     wclear(frame);
     updateFrame();
-    wborder(frame, ' ', ' ', ' ',' ',' ',' ',' ',' ');
 }
 
 void Gui::displayWin() {
