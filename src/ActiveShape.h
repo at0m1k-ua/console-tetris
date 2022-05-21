@@ -33,7 +33,7 @@ class ActiveShape {
     bool touchesRight();
     bool touchesRight(ShapeState *state);
     bool conflictsWithGameField(ShapeState *state);
-    void generateActiveShape(ShapeLoader* loader);
+    void generateNextShape(ShapeLoader* loader);
 };
 
 #endif
