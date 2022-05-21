@@ -26,6 +26,11 @@ void handle(Gui* gui, ActiveShape* activeShape, GameField* gameField, ShapeLoade
         gui->displayResult(false);
         *end = false;
     }
+    else if(gameField->isGameWon()) {
+        gui->clearFrame();
+        gui->displayResult(true);
+        *end = false;
+    }
     const int fallPeriod = 1000;  //let it const for now
     static long lastFallTime = getTimeMillis();
     long currentTime = getTimeMillis();
