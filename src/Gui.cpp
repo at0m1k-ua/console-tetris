@@ -159,15 +159,39 @@ void Gui::displayResult(bool flag) {
 	init_pair(1, COLOR_RED, COLOR_BLACK);
 	init_pair(2, COLOR_GREEN, COLOR_BLACK);
 	if(flag) {
+        clearFrame();
 		attron(COLOR_PAIR(2));
 		mvprintw(screen_size_y/2, (screen_size_x/2) - 7, "YOU WIN");
 		attroff(COLOR_PAIR(2));
 	}
 	else {
+        clearFrame();
 		attron(COLOR_PAIR(1));
 		mvprintw(screen_size_y/2, screen_size_x/2 - 9, "GAME OVER");
 		attroff(COLOR_PAIR(1));
 	}
+}
+
+bool Gui::isGameOver() {
+    for(int x = 0; x < gameField->getSizeX(); x++) {
+        if(gameField->getFieldValue(x, 0)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Gui::isGameWon() {
+
+    for(int y = 1; y < gameField->getSizeY(); y++) {
+        bool flag = true;
+        for(int x = 0; x < gameField->getSizeX(); x++)
+            if(!gameField->getFieldValue(x, y))
+                flag = false;
+        if (flag)
+            return true;
+    }
+    return false;
 }
 
 

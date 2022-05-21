@@ -39,6 +39,9 @@ public:
 	void clearFrame();
 	void displayResult(bool flag);
     void generateNewActiveShape(ShapeLoader* loader);
+    bool isGameOver();
+    bool isGameWon();
+    const static int NUM_COLORS = 6;
 };
 
 #endif

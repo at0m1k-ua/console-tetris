@@ -4,8 +4,8 @@ ActiveShape::ActiveShape(GameField* m_gm, ShapeLoader* loader)
 {
     srand(time(nullptr));
     gamefield = m_gm;
-    statesList = loader->getShape(rand() % 8)->getCurrentState();
-    color = rand() % 6 + 1;
+    statesList = loader->getShape(rand() % loader->getAmount())->getCurrentState();
+    color = rand() % Gui::NUM_COLORS + 1;
     x = gamefield->getSizeX() / 2 - 2;
     y = 0;
 
@@ -125,9 +125,9 @@ bool ActiveShape::conflictsWithGameField(ShapeState* state) {
 
 void ActiveShape::generateActiveShape(ShapeLoader* loader) {
     srand(time(NULL));
-    Shape* currentShape = loader->getShape(rand()%6);
+    Shape* currentShape = loader->getShape(rand()%loader->getAmount());
     statesList = currentShape->getCurrentState();
-    color = rand() % 6 + 1;
+    color = rand() % Gui::NUM_COLORS + 1;
     x = gamefield->getSizeX() / 2 - 2;
     y = 0;
 }

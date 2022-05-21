@@ -21,6 +21,7 @@ void handle(Gui* gui, ActiveShape* activeShape, GameField* gameField, ShapeLoade
         gameField->mergeActiveShape(activeShape);
         activeShape->generateActiveShape(loader);
     }
+
     const int fallPeriod = 1000;  //let it const for now
     static long lastFallTime = getTimeMillis();
     long currentTime = getTimeMillis();
@@ -41,18 +42,15 @@ int main() {
     gui->updateScreen();
     int choice;
     curs_set(0);
-    bool startGame = true;
-    while((choice = wgetch(gui->getWin())) != KEY_F(2) && startGame) {
-        if(gamefield->isGameOver()) {
-        gui->clearFrame();
-        gui->displayResult(false);
-        startGame = false;
+    while((choice = wgetch(gui->getWin())) != KEY_F(2)) {
+        if(gui->isGameOver()) {
+            gui->displayResult(false);
+            break;
         }
-        else if(gamefield->isGameWon()) {
-        gui->clearFrame();
-        gui->displayResult(true);
-        startGame = false;
-        }   
+        else if(gui->isGameWon()) {
+            gui->displayResult(true);
+            break;
+        }
         switch (choice)
         {
         case KEY_DOWN:
