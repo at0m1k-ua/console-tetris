@@ -20,7 +20,7 @@ class Gui {
     ActiveShape* activeShape;
 
 public:
-	Gui(GameField* gameField);
+	Gui(GameField* gameField, ActiveShape* activeShape);
 	WINDOW* getWin();
 	void init();	
 	void updateScreen();
@@ -28,7 +28,6 @@ public:
 	void paint(int x, int y, int color);
 	void fillCell(int x, int y);
 	void eraseActiveShape();
-    void setActiveShape(ActiveShape* activeShape);
     void drawGameField();
 	void clearGameField();
     void drawActiveShape();
@@ -36,9 +35,9 @@ public:
     void moveActiveShapeRight();
     void moveActiveShapeDown();
     void rotateActiveShape();
+    void setGameField(GameField* gameField);
 	void clearFrame();
 	void displayResult(bool flag);
-    void generateNewActiveShape(ShapeLoader* loader);
     bool isGameOver();
     bool isGameWon();
     const static int NUM_COLORS = 6;

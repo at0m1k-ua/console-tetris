@@ -5,8 +5,9 @@
 #include "ActiveShape.h"
 #include "GameField.h"
 
-Gui::Gui(GameField* gameField) {
+Gui::Gui(GameField* gameField, ActiveShape* activeShape) {
     this->gameField = gameField;
+    this->activeShape = activeShape;
 	frame_size_x = 2*gameField->getSizeX();
 	frame_size_y = gameField->getSizeY();
 }
@@ -89,10 +90,6 @@ void Gui::drawActiveShape() {
 	}
 }
 
-void Gui::setActiveShape(ActiveShape *shape) {
-    this->activeShape = shape;
-}
-
 void Gui::eraseActiveShape() {
 	for(int i = 0; i < 4; i++) {
 		for(int j = 0; j < 4; j++) {
@@ -142,33 +139,30 @@ void Gui::rotateActiveShape() {
     updateFrame();
 }
 
-void Gui::clearGameField() {
-    for(int i = 0; i < gameField->getSizeY(); i++) {
-        for(int j = 0; j < gameField->getSizeX(); j++) {
-            paint(j, i, 0);
-        }
-    }
+void Gui::setGameField(GameField* gameField) {
+    this->gameField = gameField;
 }
 
 void Gui::clearFrame() {
-	clearGameField();
-	wborder(frame, ' ', ' ', ' ',' ',' ',' ',' ',' ');
+    wclear(frame);
+    updateFrame();
+    wborder(frame, ' ', ' ', ' ',' ',' ',' ',' ',' ');
 }
 
 void Gui::displayResult(bool flag) {
-	init_pair(1, COLOR_RED, COLOR_BLACK);
-	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	init_pair(7, COLOR_GREEN, COLOR_BLACK);
+	init_pair(8, COLOR_RED, COLOR_BLACK);
 	if(flag) {
         clearFrame();
-		attron(COLOR_PAIR(2));
+		attron(COLOR_PAIR(7));
 		mvprintw(screen_size_y/2, (screen_size_x/2) - 7, "YOU WIN");
-		attroff(COLOR_PAIR(2));
+		attroff(COLOR_PAIR(7));
 	}
 	else {
         clearFrame();
-		attron(COLOR_PAIR(1));
+		attron(COLOR_PAIR(8));
 		mvprintw(screen_size_y/2, screen_size_x/2 - 9, "GAME OVER");
-		attroff(COLOR_PAIR(1));
+		attroff(COLOR_PAIR(8));
 	}
 }
 

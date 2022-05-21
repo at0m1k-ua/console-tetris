@@ -11,7 +11,7 @@ class GameField;
 
 class ActiveShape {
     GameField* gamefield;
-    ShapeState* statesList;
+    Shape* currentShape;
     int color;
     int x;
     int y;
