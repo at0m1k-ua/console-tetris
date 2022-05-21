@@ -100,13 +100,13 @@ void Gui::eraseActiveShape() {
 	}
 }
 
-WINDOW* Gui::getWin() {
+WINDOW* Gui::getFrame() {
 	return frame;
 }
 void Gui::drawGameField() {
     for(int i = 0; i < gameField->getSizeY(); i++) {
         for(int j = 0; j < gameField->getSizeX(); j++) {
-            paint(j, i, gameField->getFieldValue(j, i));
+            paint(j, i, gameField->getCellValue(j, i));
         }
     }
 }
@@ -167,7 +167,7 @@ void Gui::displayResult(bool flag) {
 
 bool Gui::isGameOver() {
     for(int x = 0; x < gameField->getSizeX(); x++) {
-        if(gameField->getFieldValue(x, 0)) {
+        if(gameField->getCellValue(x, 0)) {
             return true;
         }
     }
@@ -179,12 +179,16 @@ bool Gui::isGameWon() {
     for(int y = 1; y < gameField->getSizeY(); y++) {
         bool flag = true;
         for(int x = 0; x < gameField->getSizeX(); x++)
-            if(!gameField->getFieldValue(x, y))
+            if(!gameField->getCellValue(x, y))
                 flag = false;
         if (flag)
             return true;
     }
     return false;
+}
+
+void Gui::end() {
+    endwin();
 }
 
 

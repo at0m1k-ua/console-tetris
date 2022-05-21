@@ -26,8 +26,8 @@ class Gui {
 
 public:
 	Gui(GameField* gameField, ActiveShape* activeShape);
-	WINDOW* getWin();
-	void init();	
+	WINDOW* getFrame();
+	void init();
 	void updateScreen();
     void drawGameField();
     void drawActiveShape();
@@ -40,6 +40,7 @@ public:
     bool isGameOver();
     bool isGameWon();
     const static int NUM_COLORS = 6;
+    void end();
 };
 
 #endif

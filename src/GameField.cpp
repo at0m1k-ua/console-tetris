@@ -35,7 +35,7 @@ int GameField::getSizeY()
 {
     return gf_size_y;
 }
-int GameField::getFieldValue(int x, int y)
+int GameField::getCellValue(int x, int y)
 {
     return field[y][x];
 }
