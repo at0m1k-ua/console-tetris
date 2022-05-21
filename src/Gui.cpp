@@ -163,9 +163,11 @@ void Gui::displayResult(bool flag) {
 		mvprintw(screen_size_y/2, (screen_size_x/2) - 7, "YOU WIN");
 		attroff(COLOR_PAIR(2));
 	}
-	attron(COLOR_PAIR(1));
-	mvprintw(screen_size_y/2, screen_size_x/2 - 9, "GAME OVER");
-	attroff(COLOR_PAIR(1));
+	else {
+		attron(COLOR_PAIR(1));
+		mvprintw(screen_size_y/2, screen_size_x/2 - 9, "GAME OVER");
+		attroff(COLOR_PAIR(1));
+	}
 }
 
 

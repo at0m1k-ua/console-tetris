@@ -23,6 +23,7 @@ public:
     void setFieldValue(int x, int y, int value);
     void mergeActiveShape(ActiveShape *state);
     bool isGameOver();
+    bool isGameWon();
 };
 
 #endif
