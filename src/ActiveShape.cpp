@@ -60,7 +60,7 @@ bool ActiveShape::touchesBottom(ShapeState* state) {
         if (cell_y != ShapeState::NO_CELLS) {
             int gf_cell_x = x + cell_x; // relative to game field
             int gf_cell_y = y + cell_y;
-            if (gf_cell_y >= gamefield->getSizeY() || gamefield->getFieldValue(gf_cell_x, gf_cell_y) != 0) {
+            if (gf_cell_y >= gamefield->getSizeY() || gamefield->getCellValue(gf_cell_x, gf_cell_y) != 0) {
                 return true;
             }
         }
@@ -78,7 +78,7 @@ bool ActiveShape::touchesLeft(ShapeState* state) {
         if (cell_x != ShapeState::NO_CELLS) {
             int gf_cell_x = x + cell_x; // relative to game field
             int gf_cell_y = y + cell_y;
-            if (gf_cell_x < 0 || gamefield->getFieldValue(gf_cell_x, gf_cell_y) != 0) {
+            if (gf_cell_x < 0 || gamefield->getCellValue(gf_cell_x, gf_cell_y) != 0) {
                 return true;
             }
         }
@@ -96,7 +96,7 @@ bool ActiveShape::touchesRight(ShapeState* state) {
         if (cell_x != ShapeState::NO_CELLS) {
             int gf_cell_x = x + cell_x; // relative to game field
             int gf_cell_y = y + cell_y;
-            if (gf_cell_x >= gamefield->getSizeX() || gamefield->getFieldValue(gf_cell_x, gf_cell_y) != 0) {
+            if (gf_cell_x >= gamefield->getSizeX() || gamefield->getCellValue(gf_cell_x, gf_cell_y) != 0) {
                 return true;
             }
         }
@@ -113,7 +113,7 @@ bool ActiveShape::conflictsWithGameField(ShapeState* state) {
                     gf_shape_y = y + shape_y;
                 if (gf_shape_x < 0 || gf_shape_x >= gamefield->getSizeX()
                  || gf_shape_y < 0 || gf_shape_y >= gamefield->getSizeY()
-                 || gamefield->getFieldValue(gf_shape_x, gf_shape_y) != 0){
+                 || gamefield->getCellValue(gf_shape_x, gf_shape_y) != 0){
                     return true;
                 }
             }

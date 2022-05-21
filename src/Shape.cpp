@@ -26,7 +26,7 @@ ShapeState* Shape::getCurrentState() {
 }
 
 ShapeState* Shape::rotateState(ShapeState* initialState) {
-	ShapeState* rotatedState = new ShapeState();
+	auto* rotatedState = new ShapeState();
 	int newI;
 	for (int i = 0; i < 4; i++) {
 		switch (i) {
