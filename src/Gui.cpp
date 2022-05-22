@@ -166,7 +166,7 @@ void Gui::drawLose(bool letter[][42]) {
 		for(int j = 0; j < 42; j++) {
 			if(letter[i][j]) {
 				attron(COLOR_PAIR(1));
-				fillCell(stdscr, j + (screen_size_x/2) - 42, i + (screen_size_y/2) - 3);
+				fillCell(stdscr, j + (screen_size_x/4) - 21, i + (screen_size_y/2) - 3);
 				attroff(COLOR_PAIR(1));
 			}
 		}
