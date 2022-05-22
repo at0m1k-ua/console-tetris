@@ -161,12 +161,15 @@ void Gui::displayWin() {
 	attroff(COLOR_PAIR(7));
 }
 
-void Gui::drawLose(bool letter[][42]) {
+void Gui::drawLose(int size_x, int size_y, bool* letter) {
+    int msg_x = (screen_size_x/2 - size_x)/2;
+    // we get half of msg_x because each cell is two characters
+    int msg_y = (screen_size_y - size_y)/2;
 	for(int i = 0; i < 5; i++) {
 		for(int j = 0; j < 42; j++) {
-			if(letter[i][j]) {
+			if(*(letter + size_x*i + j)) {
 				attron(COLOR_PAIR(1));
-				fillCell(stdscr, j + (screen_size_x/4) - 21, i + (screen_size_y/2) - 3);
+				fillCell(stdscr, j + (msg_x), i + (msg_y));
 				attroff(COLOR_PAIR(1));
 			}
 		}
@@ -175,7 +178,10 @@ void Gui::drawLose(bool letter[][42]) {
 
 void Gui::displayLose() {
 	clearFrame();
-	drawLose(messageLose);
+    drawLose(
+            sizeof(messageLose[0])/sizeof(messageLose[0][0]),
+            sizeof(messageLose)/sizeof(messageLose[0]),
+            messageLose[0]);
 	wrefresh(stdscr);
 }
 
@@ -204,5 +210,4 @@ bool Gui::isGameWon() {
 void Gui::end() {
     endwin();
 }
-
 

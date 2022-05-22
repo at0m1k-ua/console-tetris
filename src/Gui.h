@@ -111,7 +111,7 @@ class Gui {
         {true, false, false, false, true}
     };
     bool messageLose[5][42] = {
-        {false, true, true , false, false, true, true, true , false, false, true, false, false, false, true, false, true, true, true , true, false, false, false, true, true, false, false, true, false, false, false, true, false, true, true, true , true, false, true, true, true, false}, 
+        {false, true, true , false, false, true, true, true , false, false, true, false, false, false, true, false, true, true, true , true, false, false, false, true, true, false, false, true, false, false, false, true, false, true, true, true , true, false, true, true, true, false},
         {true, false, false , false, false, true, false, false , true, false, true, true, false , true, true, false, true, false, false ,false, false, false, true, false, false, true, false, true, false, false , false, true, false, true, false, false ,false, false, true, false, false, true},
         {true, false, true, true, false, true, false, false ,true, false, true, false, true , false, true, false, true, true, true, true, false, false, true, false , false, true, false, true, false, false, false, true, false, true, true, true, true, false, true, true, true, false},
         {true, false , false, true, false, true, true, true, true, false, true, false , false, false, true, false, true, false , false, false, false, false, true, false, false, true, false, false, true , false, true, false, false, true, false , false, false, false, true, false , false, true},
@@ -150,7 +150,7 @@ public:
 	void displayLose();
     bool isGameOver();
     bool isGameWon();
-    void drawLose(bool letter[][42]);
+    void drawLose(int size_x, int size_y, bool* letter);
     const static int NUM_COLORS = 6;
     void end();
 };
