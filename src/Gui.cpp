@@ -80,6 +80,11 @@ void Gui::fillCell(int x, int y) {
 	mvwaddch(frame, y + 1, 2*x + 2, ' ');
 }
 
+void Gui::fillCell(WINDOW* win,int x, int y) {
+	mvwaddch(win, y + 1, 2*x + 1, ' ');
+	mvwaddch(win, y + 1, 2*x + 2, ' ');
+}
+
 void Gui::drawActiveShape() {
 	for(int i = 0; i < 4; i++) {
 		for(int j = 0; j < 4; j++) {
@@ -156,12 +161,22 @@ void Gui::displayWin() {
 	attroff(COLOR_PAIR(7));
 }
 
+void Gui::drawLose(bool letter[][42]) {
+	for(int i = 0; i < 5; i++) {
+		for(int j = 0; j < 42; j++) {
+			if(letter[i][j]) {
+				attron(COLOR_PAIR(1));
+				fillCell(stdscr, j + (screen_size_x/2) - 42, i + (screen_size_y/2) - 3);
+				attroff(COLOR_PAIR(1));
+			}
+		}
+	}
+}
+
 void Gui::displayLose() {
-	init_pair(8, COLOR_RED, COLOR_BLACK);
 	clearFrame();
-	attron(COLOR_PAIR(8));
-	mvprintw(screen_size_y/2, screen_size_x/2 - 9, "GAME OVER");
-	attroff(COLOR_PAIR(8));
+	drawLose(messageLose);
+	wrefresh(stdscr);
 }
 
 bool Gui::isGameOver() {
