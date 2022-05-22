@@ -103,8 +103,7 @@ class Gui {
         {false, false , true, false, false},
         {false, false, true, false, false}
     };
-    bool letterN[6][5] = {
-        {true, false, false, false, true},
+    bool letterN[5][5] = {
         {true, false, false , false, true},
         {true, true, false, false, true},
         {true, false, true , false, true},  
@@ -117,6 +116,14 @@ class Gui {
         {true, false, true, true, false, true, false, false ,true, false, true, false, true , false, true, false, true, true, true, true, false, false, true, false , false, true, false, true, false, false, false, true, false, true, true, true, true, false, true, true, true, false},
         {true, false , false, true, false, true, true, true, true, false, true, false , false, false, true, false, true, false , false, false, false, false, true, false, false, true, false, false, true , false, true, false, false, true, false , false, false, false, true, false , false, true},
         {false, true, true, false, false, true, false , false, true, false, true, false, false, false, true, false, true, true, true, true, false, false, false, true, true, false, false, false, false, true, false, false, false, true, true, true, true, false, true, false, false, true}
+    };
+
+    bool messageWin[5][30] = {
+        {true, false, false, true, false, false, true, false, false , false, true, false, true, false, true, true, false, false, true},
+        {true, false, false, true, false, false, true, false, false, false, true, false, true, false, true, true, false, false, true},
+        {true, false, false , true, false, false, true, false, true, false, true}, false, true, false, true, false, true , false, true},  
+        {true, false , false, true, false, false, false, true , false, true, false, false, true, false, true, false , false, true, true},
+        {false, true, true, false, false, false, false, true, false, true, false, false, true, false, true, false, false, false, true}
     };
 
     void updateFrame();
