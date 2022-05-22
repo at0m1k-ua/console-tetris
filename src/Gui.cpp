@@ -158,7 +158,7 @@ void Gui::drawWin(int size_x, int size_y, bool* letter) {
     // we get half of msg_x because each cell is two characters
     int msg_y = (screen_size_y - size_y)/2;
 	for(int i = 0; i < 5; i++) {
-		for(int j = 0; j < 30; j++) {
+		for(int j = 0; j < 31; j++) {
 			if(*(letter + size_x*i + j)) {
 				attron(COLOR_PAIR(3));
 				fillCell(stdscr, j + (msg_x), i + (msg_y));
@@ -182,7 +182,7 @@ void Gui::drawLose(int size_x, int size_y, bool* letter) {
     // we get half of msg_x because each cell is two characters
     int msg_y = (screen_size_y - size_y)/2;
 	for(int i = 0; i < 5; i++) {
-		for(int j = 0; j < 42; j++) {
+		for(int j = 0; j < 43; j++) {
 			if(*(letter + size_x*i + j)) {
 				attron(COLOR_PAIR(1));
 				fillCell(stdscr, j + (msg_x), i + (msg_y));
