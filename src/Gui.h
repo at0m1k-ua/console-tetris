@@ -18,19 +18,19 @@ class Gui {
 	WINDOW* frame;
     GameField* gameField;
     ActiveShape* activeShape;
-    bool messageLose[5][42] = {
-        {false, true, true , false, false, true, true, true , false, false, true, false, false, false, true, false, true, true, true , true, false, false, false, true, true, false, false, true, false, false, false, true, false, true, true, true , true, false, true, true, true, false},
-        {true, false, false , false, false, true, false, false , true, false, true, true, false , true, true, false, true, false, false ,false, false, false, true, false, false, true, false, true, false, false , false, true, false, true, false, false ,false, false, true, false, false, true},
-        {true, false, true, true, false, true, false, false ,true, false, true, false, true , false, true, false, true, true, true, true, false, false, true, false , false, true, false, true, false, false, false, true, false, true, true, true, true, false, true, true, true, false},
-        {true, false , false, true, false, true, true, true, true, false, true, false , false, false, true, false, true, false , false, false, false, false, true, false, false, true, false, false, true , false, true, false, false, true, false , false, false, false, true, false , false, true},
-        {false, true, true, false, false, true, false , false, true, false, true, false, false, false, true, false, true, true, true, true, false, false, false, true, true, false, false, false, false, true, false, false, false, true, true, true, true, false, true, false, false, true}
+    bool messageLose[5][43] = {
+        {false, true, true , false, false, true, true, true , false, false, true, false, false, false, true, false, true, true, true , true, false, false, false, false, true, true, false, false, true, false, false, false, true, false, true, true, true , true, false, true, true, true, false},
+        {true, false, false , false, false, true, false, false , true, false, true, true, false , true, true, false, true, false, false ,false, false, false, false, true, false, false, true, false, true, false, false , false, true, false, true, false, false ,false, false, true, false, false, true},
+        {true, false, true, true, false, true, false, false ,true, false, true, false, true , false, true, false, true, true, true, true, false, false, false, true, false , false, true, false, true, false, false, false, true, false, true, true, true, true, false, true, true, true, false},
+        {true, false , false, true, false, true, true, true, true, false, true, false , false, false, true, false, true, false , false, false, false, false, false, true, false, false, true, false, false, true , false, true, false, false, true, false , false, false, false, true, false , false, true},
+        {false, true, true, false, false, true, false , false, true, false, true, false, false, false, true, false, true, true, true, true, false, false, false, false, true, true, false, false, false, false, true, false, false, false, true, true, true, true, false, true, false, false, true}
     };  
-    bool messageWin[5][30] = {
-        {true, false, false, false, true, false, false, true, true, false, false, true, false, false, true, false, false, true, false, false , false, true, false, true, false, true, false, false, false, true},
-        {false, true, false , true, false, false, true, false,  false, true, false, true, false, false, true, false, false, true, false, false, false, true, false, true, false, true, true, false, false, true},
-        {false, false, true, false, false, false, true, false, false, true, false, true, false, false , true, false, false, true, false, true, false, true, false, true, false, true, false, true, false, true},  
-        {false, false, true, false, false, false, true, false ,false, true, false, true, false, false, true, false, false, false, true , false, true, false, false, true, false, true, false , false, true, true},
-        {false, false , true, false, false, false, false, true, true, false, false, false, true, true, false, false, false, false, true, false, true, false, false, true, false, true, false, false, false, true}
+    bool messageWin[5][31] = {
+        {true, false, false, false, true, false, false, true, true, false, false, true, false, false, true, false, false, false, true, false, false , false, true, false, true, false, true, false, false, false, true},
+        {false, true, false , true, false, false, true, false,  false, true, false, true, false, false, true, false, false, false, true, false, false, false, true, false, true, false, true, true, false, false, true},
+        {false, false, true, false, false, false, true, false, false, true, false, true, false, false , true, false, false, false, true, false, true, false, true, false, true, false, true, false, true, false, true},  
+        {false, false, true, false, false, false, true, false ,false, true, false, true, false, false, true, false, false, false, false, true , false, true, false, false, true, false, true, false , false, true, true},
+        {false, false , true, false, false, false, false, true, true, false, false, false, true, true, false, false, false, false, false, true, false, true, false, false, true, false, true, false, false, false, true}
     };
 
     void updateFrame();
