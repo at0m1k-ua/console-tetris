@@ -153,16 +153,14 @@ void Gui::clearFrame() {
     updateFrame();
 }
 
-void Gui::drawWin(int size_x, int size_y, bool* letter) {
-    int msg_x = (screen_size_x/2 - size_x)/2;
+void Gui::drawResult(int size_x, int size_y, bool* letter) {
+	int msg_x = (screen_size_x/2 - size_x)/2;
     // we get half of msg_x because each cell is two characters
     int msg_y = (screen_size_y - size_y)/2;
 	for(int i = 0; i < 5; i++) {
-		for(int j = 0; j < 31; j++) {
+		for(int j = 0; j < size_x; j++) {
 			if(*(letter + size_x*i + j)) {
-				attron(COLOR_PAIR(3));
 				fillCell(stdscr, j + (msg_x), i + (msg_y));
-				attroff(COLOR_PAIR(3));
 			}
 		}
 	}
@@ -170,34 +168,23 @@ void Gui::drawWin(int size_x, int size_y, bool* letter) {
 
 void Gui::displayWin() {
 	clearFrame();
-    drawWin(
+	attron(COLOR_PAIR(3));
+    drawResult(
             sizeof(messageWin[0])/sizeof(messageWin[0][0]),
             sizeof(messageWin)/sizeof(messageWin[0]),
             messageWin[0]);
+	attroff(COLOR_PAIR(3));
 	wrefresh(stdscr);
-}
-
-void Gui::drawLose(int size_x, int size_y, bool* letter) {
-    int msg_x = (screen_size_x/2 - size_x)/2;
-    // we get half of msg_x because each cell is two characters
-    int msg_y = (screen_size_y - size_y)/2;
-	for(int i = 0; i < 5; i++) {
-		for(int j = 0; j < 43; j++) {
-			if(*(letter + size_x*i + j)) {
-				attron(COLOR_PAIR(1));
-				fillCell(stdscr, j + (msg_x), i + (msg_y));
-				attroff(COLOR_PAIR(1));
-			}
-		}
-	}
 }
 
 void Gui::displayLose() {
 	clearFrame();
-    drawLose(
+	attron(COLOR_PAIR(1));
+    drawResult(
             sizeof(messageLose[0])/sizeof(messageLose[0][0]),
             sizeof(messageLose)/sizeof(messageLose[0]),
             messageLose[0]);
+	attroff(COLOR_PAIR(1));
 	wrefresh(stdscr);
 }
 
