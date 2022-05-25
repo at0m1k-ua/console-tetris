@@ -42,11 +42,11 @@ int main() {
     curs_set(0);
     int choice;
     while((choice = wgetch(gui->getFrame())) != KEY_F(2)) {
-        if(gui->isGameOver()) {
+        if(gamefield->isGameOver()) {
             gui->displayLose();
             break;
         }
-        else if(gui->isGameWon()) {
+        else if(gamefield->isGameWon()) {
             gui->displayWin();
             break;
         }

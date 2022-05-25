@@ -21,6 +21,8 @@ public:
     int getSizeY();
     int getCellValue(int x, int y);
     void mergeActiveShape(ActiveShape *shape);
+    bool isGameOver();
+    bool isGameWon();
 };
 
 #endif

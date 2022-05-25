@@ -50,3 +50,24 @@ void GameField::mergeActiveShape(ActiveShape* shape) {
     }
 }
 
+bool GameField::isGameOver() {
+    for(int x = 0; x < gf_size_x; x++) {
+        if(getCellValue(x, 0)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool GameField::isGameWon() {
+    for(int y = 1; y < gf_size_y; y++) {
+        bool flag = true;
+        for(int x = 0; x < gf_size_x; x++)
+            if(!getCellValue(x, y))
+                flag = false;
+        if (flag)
+            return true;
+    }
+    return false;
+}
+
