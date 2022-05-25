@@ -4,6 +4,8 @@
 #include "Gui.h"
 #include "ActiveShape.h"
 #include "GameField.h"
+#include "Messages.h"
+
 
 Gui::Gui(GameField* gameField, ActiveShape* activeShape) {
     this->gameField = gameField;
@@ -130,8 +132,6 @@ void Gui::moveActiveShapeRight() {
     updateFrame();
 }
 
-// TODO implement redrawShape(pointer to ActiveShape function) method
-
 void Gui::moveActiveShapeDown() {
     eraseActiveShape();
     activeShape->moveDown();
@@ -172,9 +172,9 @@ void Gui::displayWin() {
 	clearFrame();
 	attron(COLOR_PAIR(3));
     drawResult(
-            sizeof(messageWin[0])/sizeof(messageWin[0][0]),
-            sizeof(messageWin)/sizeof(messageWin[0]),
-            messageWin[0]);
+            sizeof(messages::messageWin[0])/sizeof(messages::messageWin[0][0]),
+            sizeof(messages::messageWin)/sizeof(messages::messageWin[0]),
+            messages::messageWin[0]);
 	attroff(COLOR_PAIR(3));
 	wrefresh(stdscr);
 }
@@ -183,9 +183,9 @@ void Gui::displayLose() {
 	clearFrame();
 	attron(COLOR_PAIR(1));
     drawResult(
-            sizeof(messageLose[0])/sizeof(messageLose[0][0]),
-            sizeof(messageLose)/sizeof(messageLose[0]),
-            messageLose[0]);
+            sizeof(messages::messageLose[0])/sizeof(messages::messageLose[0][0]),
+            sizeof(messages::messageLose)/sizeof(messages::messageLose[0]),
+            messages::messageLose[0]);
 	attroff(COLOR_PAIR(1));
 	wrefresh(stdscr);
 }
