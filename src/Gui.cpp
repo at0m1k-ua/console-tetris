@@ -130,6 +130,8 @@ void Gui::moveActiveShapeRight() {
     updateFrame();
 }
 
+// TODO implement redrawShape(pointer to ActiveShape function) method
+
 void Gui::moveActiveShapeDown() {
     eraseActiveShape();
     activeShape->moveDown();
