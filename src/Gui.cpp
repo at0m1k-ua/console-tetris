@@ -188,28 +188,6 @@ void Gui::displayLose() {
 	wrefresh(stdscr);
 }
 
-bool Gui::isGameOver() {
-    for(int x = 0; x < gameField->getSizeX(); x++) {
-        if(gameField->getCellValue(x, 0)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool Gui::isGameWon() {
-
-    for(int y = 1; y < gameField->getSizeY(); y++) {
-        bool flag = true;
-        for(int x = 0; x < gameField->getSizeX(); x++)
-            if(!gameField->getCellValue(x, y))
-                flag = false;
-        if (flag)
-            return true;
-    }
-    return false;
-}
-
 void Gui::end() {
     endwin();
 }

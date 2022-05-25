@@ -55,8 +55,6 @@ public:
 	void displayResult(bool flag);
 	void displayWin();
 	void displayLose();
-    bool isGameOver();
-    bool isGameWon();
     void drawLose(int size_x, int size_y, bool* letter);
     void drawWin(int size_x, int size_y, bool* letter);
     void drawResult(int size_x, int size_y, bool* letter);
