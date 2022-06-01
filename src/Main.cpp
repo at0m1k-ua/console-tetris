@@ -7,6 +7,8 @@
 #include "ActiveShape.h"
 #include <unistd.h>
 
+const int EXIT_KEY = 27; // ASCII code of Esc
+
 using namespace std;
 
 long getTimeMillis() {
@@ -68,7 +70,7 @@ int main() {
             case ERR:
                 handle(gui, activeShape, gamefield, loader);
                 break;
-            case 27:
+            case EXIT_KEY:
                 loop = false;
                 break;
             default:
