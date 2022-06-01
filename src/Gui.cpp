@@ -17,6 +17,7 @@ Gui::Gui(GameField* gameField, ActiveShape* activeShape) {
 void Gui::init() {
 	initscr();
 	cbreak();
+	set_escdelay(0);
 
 	if (!has_colors()) {
 		endwin();
