@@ -36,6 +36,7 @@ void Gui::init() {
     nodelay(frame, TRUE);
 
 	updateScreen();
+	curs_set(0);
 }
 
 void Gui::updateScreen() {
