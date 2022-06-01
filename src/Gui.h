@@ -37,7 +37,6 @@ public:
     void moveActiveShapeRight();
     void moveActiveShapeDown();
     void rotateActiveShape();
-    void setGameField(GameField* gameField);
 	void displayWin();
 	void displayLose();
     void drawResult(int size_x, int size_y, bool* letter);
