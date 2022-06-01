@@ -61,11 +61,11 @@ bool GameField::isGameOver() {
 
 bool GameField::isGameWon() {
     for(int y = 1; y < gf_size_y; y++) {
-        bool flag = true;
+        bool isGameWon = true;
         for(int x = 0; x < gf_size_x; x++)
             if(!getCellValue(x, y))
-                flag = false;
-        if (flag)
+                isGameWon = false;
+        if (isGameWon)
             return true;
     }
     return false;

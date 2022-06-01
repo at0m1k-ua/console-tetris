@@ -1,7 +1,7 @@
 #include "ShapeLoader.h"
 
 void ShapeLoader::load() {
-    std::vector <std::string> fileLines = getFileString();
+    std::vector <std::string> fileLines = getFileLines();
     std::vector <int> numStates = getNumStates(fileLines);
     this->amountShapes = (int) numStates.size();
     auto* states = new ShapeState[amountShapes];
@@ -9,7 +9,7 @@ void ShapeLoader::load() {
     generateShapes(states, numStates);
 }
 
-std::vector<std::string> ShapeLoader::getFileString()
+std::vector<std::string> ShapeLoader::getFileLines()
 {
 
 	std::ifstream fileInput;

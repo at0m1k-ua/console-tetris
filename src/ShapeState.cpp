@@ -2,9 +2,9 @@
 
 ShapeState::ShapeState() {
 	values = new bool[16]{false};
-    bottomCellsDistances = new int[4]{-1};
-    leftCellsDistances = new int[4]{-1};
-    rightCellsDistances = new int[4]{-1};
+    bottomCellsDistances = new int[4]{NO_CELLS};
+    leftCellsDistances = new int[4]{NO_CELLS};
+    rightCellsDistances = new int[4]{NO_CELLS};
     next = nullptr;
 }
 
