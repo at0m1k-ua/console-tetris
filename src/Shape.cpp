@@ -30,15 +30,15 @@ ShapeState* Shape::rotateState(ShapeState* initialState) {
 	int newI;
 	for (int i = 0; i < 4; i++) {
 		switch (i) {
-				case 0:
-					newI = 2;
-					break;
-				case 2:
-					newI = 0;
-					break;
-				default:
-					newI = i;
-			}
+            case 0:
+                newI = 2;
+                break;
+            case 2:
+                newI = 0;
+                break;
+            default:
+                newI = i;
+        }
 		for (int j = 0; j < 4; j++) {
 			
 			rotatedState->setValue(newI, j, initialState->getValue(j, i));

@@ -1,9 +1,7 @@
 #include <iostream>
-#include <cstdlib>
 #include <ncurses.h>
 #include <sys/time.h>
 #include "ShapeLoader.h"
-#include "Shape.h"
 #include "GameField.h"
 #include "Gui.h"
 #include "ActiveShape.h"
@@ -41,14 +39,17 @@ int main() {
     gui->init();
     curs_set(0);
     int choice;
-    while((choice = wgetch(gui->getFrame())) != KEY_F(2)) {
+    while(true) {
+        choice = wgetch(gui->getFrame());
         if(gamefield->isGameOver()) {
             gui->displayLose();
-            break;
+            sleep(5);
+            return 0;
         }
-        else if(gamefield->isGameWon()) {
+        if(gamefield->isGameWon()) {
             gui->displayWin();
-            break;
+            sleep(5);
+            return 0;
         }
         switch (choice)
         {
@@ -67,14 +68,12 @@ int main() {
         case ERR:
             handle(gui, activeShape, gamefield, loader);
             break;
+        case 27: // Escape ascii key
+            gui->end();
+            return 0;
         default:
             gui->updateScreen();
             break;
         }
     }
-    nodelay(gui->getFrame(), FALSE);
-    getch();
-    gui->end();
-
-  return 0;
 }

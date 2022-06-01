@@ -35,7 +35,6 @@ void Gui::init() {
     nodelay(frame, TRUE);
 
 	updateScreen();
-
 }
 
 void Gui::updateScreen() {
@@ -66,11 +65,9 @@ void Gui::updateFrame() {
 }
 
 void Gui::paint(int x, int y, int color) {
-	switch(color) {
-		case 0:
+	if (color == 0) {
 		fillCell(x, y);
-		break;
-		default:
+	} else {
 		wattron(frame, COLOR_PAIR(color));
 		fillCell(x, y);
 		wattroff(frame, COLOR_PAIR(color));
@@ -78,11 +75,10 @@ void Gui::paint(int x, int y, int color) {
 }
 
 void Gui::fillCell(int x, int y) {
-	mvwaddch(frame, y + 1, 2*x + 1, ' ');
-	mvwaddch(frame, y + 1, 2*x + 2, ' ');
+	fillCell(frame, x, y);
 }
 
-void Gui::fillCell(WINDOW* win,int x, int y) {
+void Gui::fillCell(WINDOW* win, int x, int y) {
 	mvwaddch(win, y + 1, 2*x + 1, ' ');
 	mvwaddch(win, y + 1, 2*x + 2, ' ');
 }
@@ -144,10 +140,6 @@ void Gui::rotateActiveShape() {
     activeShape->rotate();
     drawActiveShape();
     updateFrame();
-}
-
-void Gui::setGameField(GameField* gameField) {
-    this->gameField = gameField;
 }
 
 void Gui::clearFrame() {
