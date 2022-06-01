@@ -12,5 +12,5 @@ Commit rules:
 - If you work on issue, tag it in your commit: `Add a class #12345`
 
 How to build and run
-Option 1: build using build.sh script and run `bin/console-tetris`
-Option 2: build using CMake and run `cmake-build-debug/console-tetris`
+- Option 1: build using build.sh script and run `bin/console-tetris`
+- Option 2: build using CMake and run `cmake-build-debug/console-tetris`
