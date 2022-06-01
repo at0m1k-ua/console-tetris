@@ -14,3 +14,5 @@ Commit rules:
 How to build and run
 - Option 1: build using build.sh script and run `bin/console-tetris`
 - Option 2: build using CMake and run `cmake-build-debug/console-tetris`
+
+Notice that your system needs to have libncurses-dev to compile this app
