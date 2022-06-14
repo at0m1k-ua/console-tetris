@@ -1,12 +1,12 @@
 #include "ShapeLoader.h"
 
 void ShapeLoader::load() {
-    std::vector <std::string> fileLines = getFileLines();
-    std::vector <int> numStates = getNumStates(fileLines);
-    this->amountShapes = (int) numStates.size();
-    auto* states = new ShapeState[amountShapes];
-    generateShapeStates(states, fileLines);
-    generateShapes(states, numStates);
+    std::vector <std::string> fileLines = getFileLines();  // get lines from shapes.conf
+    std::vector <int> numStates = getNumStates(fileLines); // get numbers of shape states
+    this->amountShapes = (int) numStates.size();           // get amount of shapes
+    auto* states = new ShapeState[amountShapes];           // create an array with initial shape states
+    generateShapeStates(states, fileLines);                // generate shape states from file lines
+    generateShapes(states, numStates);                     // generate shapes and save them in ShapeLoader object
 }
 
 std::vector<std::string> ShapeLoader::getFileLines()
@@ -51,7 +51,7 @@ std::vector <int> ShapeLoader::getNumStates(std::vector <std::string> &fileLines
 
 void ShapeLoader::generateShapeStates(ShapeState* states, std::vector <std::string> &fileLines)
 {
-  int i = 0;      // number of line (exept state quatities)
+  int i = 0;      // number of line (except state quantities)
   for(std::string str: fileLines)
     if(str.empty() || !std::isdigit(str[0]))
     {
