@@ -102,7 +102,7 @@ bool handleKeyPress(int choice,
     return true;
 }
 
-int main() {
+int main()
     bool replay;
     auto* loader = new ShapeLoader();
     // load shapes from shapes.conf file
