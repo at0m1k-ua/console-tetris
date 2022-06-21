@@ -50,13 +50,8 @@ int ActiveShape::getY() {
 ShapeState* ActiveShape::getCurrentState() {
     return currentShape->getCurrentState();
 }
-bool ActiveShape::touchesBottom() {
-    return touchesBottom(currentShape->getCurrentState());
-}
-
-bool ActiveShape::touchesBottom(ShapeState* state) {
-    for (int cell_x = 0; cell_x < 4; cell_x++) {
-        int cell_y = state->getBottomCellsDistance(cell_x); // relative to shape
+bool ActiveShape::touchesBottom() {for (int cell_x = 0; cell_x < 4; cell_x++) {
+        int cell_y = currentShape->getCurrentState()->getBottomCellsDistance(cell_x); // relative to shape
         if (cell_y != ShapeState::NO_CELLS) {
             int gf_cell_x = x + cell_x; // relative to game field
             int gf_cell_y = y + cell_y;
@@ -69,12 +64,8 @@ bool ActiveShape::touchesBottom(ShapeState* state) {
 }
 
 bool ActiveShape::touchesLeft() {
-    return touchesLeft(currentShape->getCurrentState());
-}
-
-bool ActiveShape::touchesLeft(ShapeState* state) {
     for (int cell_y = 0; cell_y < 4; cell_y++) {
-        int cell_x = state->getLeftCellsDistance(cell_y); // relative to shape
+        int cell_x = currentShape->getCurrentState()->getLeftCellsDistance(cell_y); // relative to shape
         if (cell_x != ShapeState::NO_CELLS) {
             int gf_cell_x = x + cell_x; // relative to game field
             int gf_cell_y = y + cell_y;
@@ -87,12 +78,8 @@ bool ActiveShape::touchesLeft(ShapeState* state) {
 }
 
 bool ActiveShape::touchesRight() {
-    return touchesRight(currentShape->getCurrentState());
-}
-
-bool ActiveShape::touchesRight(ShapeState* state) {
     for (int cell_y = 0; cell_y < 4; cell_y++) {
-        int cell_x = state->getRightCellsDistance(cell_y); // relative to shape
+        int cell_x = currentShape->getCurrentState()->getRightCellsDistance(cell_y); // relative to shape
         if (cell_x != ShapeState::NO_CELLS) {
             int gf_cell_x = x + cell_x; // relative to game field
             int gf_cell_y = y + cell_y;
