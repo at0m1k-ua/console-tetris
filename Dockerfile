@@ -6,7 +6,6 @@ RUN ln -sf /app/shapes.conf /shapes.conf
 WORKDIR /app
 ADD . .
 
-RUN cmake . && make
-RUN mkdir bin && ./build.sh
+RUN cmake . && make && mv console_tetris bin
 
 CMD ["/app/bin/console_tetris"]
