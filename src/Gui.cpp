@@ -1,5 +1,4 @@
 #include <ncurses.h>
-#include <cstdlib>
 #include <iostream>
 #include "Gui.h"
 #include "ActiveShape.h"
