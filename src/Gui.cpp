@@ -149,7 +149,7 @@ void Gui::clearFrame() {
     updateFrame();
 }
 
-void Gui::drawResult(int size_x, int size_y, bool* letter) {
+void Gui::drawResult(int size_x, int size_y, const bool* letter) {
 	int msg_x = (screen_size_x/2 - size_x)/2;
     // we get half of msg_x because each cell is two characters
     int msg_y = (screen_size_y - size_y)/2;

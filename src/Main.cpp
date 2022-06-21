@@ -6,6 +6,7 @@
 #include "Gui.h"
 #include "ActiveShape.h"
 #include <unistd.h>
+#include <climits>
 
 const int EXIT_KEY = 27; // ASCII code of Esc
 
@@ -37,19 +38,33 @@ void moveDownEachSecond(Gui* gui) {
     }
 }
 
+long gameEndTime;
+
 bool handleGamdEnd(GameField* gameField, Gui* gui) {
     // game end is GameOver or GameWon events
     if(gameField->isGameOver()) {
+        gameEndTime = getTimeMillis();
         gui->displayLose();
-        sleep(5);
+        sleep(3);
         return false;
     }
     if(gameField->isGameWon()) {
+        gameEndTime = getTimeMillis();
         gui->displayWin();
-        sleep(5);
+        sleep(3);
         return false;
     }
     return true;
+}
+
+int moves = 0;
+long timeOfFirstMove;
+
+void countMove() {
+    if (moves == 0) {
+        timeOfFirstMove = getTimeMillis();
+    }
+    moves++;
 }
 
 bool handleKeyPress(int choice,
@@ -60,15 +75,19 @@ bool handleKeyPress(int choice,
     switch (choice){
         case KEY_DOWN:
             gui->moveActiveShapeDown();
+            countMove();
             break;
         case KEY_LEFT:
             gui->moveActiveShapeLeft();
+            countMove();
             break;
         case KEY_RIGHT:
             gui->moveActiveShapeRight();
+            countMove();
             break;
         case KEY_UP:
             gui->rotateActiveShape();
+            countMove();
             break;
         case ERR: // if no key is pressed
             handleActiveShapeLifetimeEnd(activeShape, gameField, loader);
@@ -84,21 +103,35 @@ bool handleKeyPress(int choice,
 }
 
 int main() {
+    bool replay;
     auto* loader = new ShapeLoader();
     // load shapes from shapes.conf file
     loader->load();
-    // create game field with given size
-    auto* gameField = new GameField(15, 20);
-    // create active shape with random shape from loader
-    auto* activeShape = new ActiveShape(gameField, loader);
-    // create gui handler to draw game field and active shape states
-    auto* gui = new Gui(gameField, activeShape);
-    gui->init();
-    int choice; // variable for pressed key
-    while (handleGamdEnd(gameField, gui) && // check if conditions for game end is met
-           handleKeyPress(choice, gui, activeShape, gameField, loader)) { // check if ESC is not pressed
-        choice = wgetch(gui->getFrame()); // get pressed key
-    }
-    gui->end();
+    do {
+        // create game field with given size
+        auto* gameField = new GameField(15, 20);
+        // create active shape with random shape from loader
+        auto* activeShape = new ActiveShape(gameField, loader);
+        // create gui handler to draw game field and active shape states
+        auto* gui = new Gui(gameField, activeShape);
+        gui->init();
+        int choice; // variable for pressed key
+        while (handleGamdEnd(gameField, gui) && // check if conditions for game end are met
+               handleKeyPress(choice, gui, activeShape, gameField, loader)) { // check if ESC is not pressed
+            choice = wgetch(gui->getFrame()); // get pressed key
+        }
+        gui->end();
+        if (moves != 0) {
+            cout << "Player pressed arrow keys " << moves << " times" << endl;
+            moves = 0;
+            cout << "Playing time: " << (double) (gameEndTime - timeOfFirstMove) / 1000 << " seconds." << endl;
+        } else {
+            cout << "Player didn't press any arrow keys" << endl;
+        }
+        cout << "Play again? (Y/n): ";
+        string answer;
+        cin >> answer;
+        replay = tolower(answer.at(answer.size() - 1)) == 'y';
+    } while (replay);
     return 0;
 }
