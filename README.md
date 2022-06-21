@@ -23,5 +23,5 @@ cd console-tetris
 docker build -t tetris .
 docker run -it tetris
 ```
-- Option 3: build using build.sh script and run `bin/console-tetris`. Ensure that your system has libncurses-dev to compile this app.
-- Option 4: build using CMake and run `cmake-build-debug/console-tetris`. Ensure that your system has libncurses-dev to compile this app.
+- Option 3: build using CMake and run `cmake-build-debug/console-tetris`. Ensure that your system has libncurses-dev to compile this app.
+- Option 4: build using build.sh script and run `bin/console-tetris`. Ensure that your system has libncurses-dev to compile this app.
