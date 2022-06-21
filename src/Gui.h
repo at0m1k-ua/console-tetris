@@ -39,7 +39,7 @@ public:
     void rotateActiveShape();
 	void displayWin();
 	void displayLose();
-    void drawResult(int size_x, int size_y, bool* letter);
+    void drawResult(int size_x, int size_y, const bool* letter);
     const static int NUM_COLORS = 6;
     void end();
 };
