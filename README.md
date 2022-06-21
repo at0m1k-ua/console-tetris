@@ -21,3 +21,7 @@ cd console-tetris
 docker build -t tetris .
 docker run -it tetris
 ```
+- Option 4: run with Docker. Enter these commands in your system:
+```
+docker run -it ghcr.io/JPlay42/console-tetris:latest
+```
