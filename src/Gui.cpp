@@ -1,5 +1,4 @@
 #include <ncurses.h>
-#include <iostream>
 #include "Gui.h"
 #include "ActiveShape.h"
 #include "GameField.h"
