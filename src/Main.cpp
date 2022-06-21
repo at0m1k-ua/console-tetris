@@ -37,9 +37,7 @@ void moveDownEachSecond(Gui* gui) {
     }
 }
 
-long gameEndTime;
-
-bool handleGamdEnd(GameField* gameField, Gui* gui) {
+bool handleGamdEnd(GameField* gameField, Gui* gui, long &gameEndTime) {
     // game end is GameOver or GameWon events
     if(gameField->isGameOver()) {
         gameEndTime = getTimeMillis();
@@ -56,10 +54,7 @@ bool handleGamdEnd(GameField* gameField, Gui* gui) {
     return true;
 }
 
-int moves = 0;
-long timeOfFirstMove;
-
-void countMove() {
+void countMove(int &moves, long &timeOfFirstMove) {
     if (moves == 0) {
         timeOfFirstMove = getTimeMillis();
     }
@@ -70,23 +65,25 @@ bool handleKeyPress(int choice,
                     Gui* gui,
                     ActiveShape* activeShape,
                     GameField* gameField,
-                    ShapeLoader* loader) {
+                    ShapeLoader* loader,
+                    int &moves,
+                    long &timeOfFirstMove) {
     switch (choice){
         case KEY_DOWN:
             gui->moveActiveShapeDown();
-            countMove();
+            countMove(moves, timeOfFirstMove);
             break;
         case KEY_LEFT:
             gui->moveActiveShapeLeft();
-            countMove();
+            countMove(moves, timeOfFirstMove);
             break;
         case KEY_RIGHT:
             gui->moveActiveShapeRight();
-            countMove();
+            countMove(moves, timeOfFirstMove);
             break;
         case KEY_UP:
             gui->rotateActiveShape();
-            countMove();
+            countMove(moves, timeOfFirstMove);
             break;
         case ERR: // if no key is pressed
             handleActiveShapeLifetimeEnd(activeShape, gameField, loader);
@@ -102,7 +99,11 @@ bool handleKeyPress(int choice,
 }
 
 int main() {
+    long gameEndTime;
+    int moves = 0;
+    long timeOfFirstMove;
     bool replay;
+
     auto* loader = new ShapeLoader();
     // load shapes from shapes.conf file
     loader->load();
@@ -115,8 +116,8 @@ int main() {
         auto* gui = new Gui(gameField, activeShape);
         gui->init();
         int choice; // variable for pressed key
-        while (handleGamdEnd(gameField, gui) && // check if conditions for game end are met
-               handleKeyPress(choice, gui, activeShape, gameField, loader)) { // check if ESC is not pressed
+        while (handleGamdEnd(gameField, gui, gameEndTime) && // check if conditions for game end are met
+               handleKeyPress(choice, gui, activeShape, gameField, loader, moves, timeOfFirstMove)) { // check if ESC is not pressed
             choice = wgetch(gui->getFrame()); // get pressed key
         }
         gui->end();
