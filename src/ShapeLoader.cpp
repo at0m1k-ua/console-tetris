@@ -19,11 +19,11 @@ std::vector<std::string> ShapeLoader::getFileLines()
 	fileInput.exceptions(std::ifstream::badbit | std::ifstream::failbit);
 	try
 	{
-		fileInput.open("../shapes.conf");
+		fileInput.open("../shape.conf");
 	}
 	catch(const std::ifstream::failure& ex)
 	{
-		std::cout << ex.what() << std::endl;
+		std::cout << "Cannot find file \"shape.conf\"" << std::endl;
 	}
 
 	while(!fileInput.eof())
@@ -78,7 +78,7 @@ Shape* ShapeLoader::getShape(int num)
     return shapes[num];
 }
 
-int ShapeLoader::getAmount() const
+int ShapeLoader::getAmount()
 {
     return this->amountShapes;
 }
