@@ -12,8 +12,8 @@ Commit rules:
 - If you work on issue, tag it in your commit: `Add a class #12345`
 
 How to build and run
-- Option 1: build using build.sh script and run `bin/console-tetris`. Ensure that your system needs to have libncurses-dev to compile this app.
-- Option 2: build using CMake and run `cmake-build-debug/console-tetris`. Ensure that your system needs to have libncurses-dev to compile this app.
+- Option 1: build using build.sh script and run `bin/console-tetris`. Ensure that your system has libncurses-dev to compile this app.
+- Option 2: build using CMake and run `cmake-build-debug/console-tetris`. Ensure that your system has libncurses-dev to compile this app.
 - Option 3: build using Docker. Enter these commands in your system:
 ```git clone https://github.com/JPlay42/console-tetris.git
 cd console-tetris
