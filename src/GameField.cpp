@@ -11,8 +11,8 @@ GameField::GameField(int gf_size_x, int gf_size_y)
     }
     catch (std::bad_alloc &xa)
     {
-        std::cout << "Allocation failure.\n";
-        return;
+        std::cerr << "Allocation failure.\n";
+        exit(1);
     }
     for (int i = 0; i < gf_size_y; i++)
         field[i] = new int[gf_size_x]{0};
