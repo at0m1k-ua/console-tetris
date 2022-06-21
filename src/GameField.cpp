@@ -1,6 +1,5 @@
 #include "GameField.h"
 #include "ActiveShape.h"
-#include <iostream>
 
 GameField::GameField(int gf_size_x, int gf_size_y)
 {
