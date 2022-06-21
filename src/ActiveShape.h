@@ -25,11 +25,8 @@ class ActiveShape {
     int getY();
     ShapeState* getCurrentState();
     bool touchesBottom();
-    bool touchesBottom(ShapeState* state);
     bool touchesLeft();
-    bool touchesLeft(ShapeState *state);
     bool touchesRight();
-    bool touchesRight(ShapeState *state);
     bool conflictsWithGameField(ShapeState *state);
     void generateNextShape(ShapeLoader* loader);
 };
