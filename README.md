@@ -18,6 +18,6 @@ How to build and run
 ```
 git clone https://github.com/JPlay42/console-tetris.git
 cd console-tetris
-docker build -t image .
-docker run -it image
+docker build -t tetris .
+docker run -it tetris
 ```
