@@ -14,7 +14,7 @@ Commit rules:
 How to build and run
 - Option 1 - the fastest one - run from GitHub container registry
 ```
-
+docker run -it ghcr.io/jplay42/console-tetris:latest
 ```
 - Option 2: build using Docker. Enter these commands in your system:
 ```
