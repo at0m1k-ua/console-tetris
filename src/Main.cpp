@@ -6,7 +6,6 @@
 #include "Gui.h"
 #include "ActiveShape.h"
 #include <unistd.h>
-#include <climits>
 
 const int EXIT_KEY = 27; // ASCII code of Esc
 
