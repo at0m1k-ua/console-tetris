@@ -17,6 +17,9 @@ std::vector<std::string> ShapeLoader::getFileLines()
 	std::vector <std::string> lines;
 
 	fileInput.exceptions(std::ifstream::badbit | std::ifstream::failbit);
+    // info about ifstream bits are got from this lesson:
+    // https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
 	try
 	{
 		fileInput.open("../shape.conf");
