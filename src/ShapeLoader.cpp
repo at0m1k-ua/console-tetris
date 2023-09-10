@@ -22,11 +22,11 @@ std::vector<std::string> ShapeLoader::getFileLines()
 
 	try
 	{
-		fileInput.open("../shape.conf");
+		fileInput.open("../shapes.conf");
 	}
 	catch(const std::ifstream::failure& ex)
 	{
-		std::cout << "Cannot find file \"shape.conf\"" << std::endl;
+		std::cout << "Cannot find file \"shapes.conf\"" << std::endl;
 	}
 
 	while(!fileInput.eof())
